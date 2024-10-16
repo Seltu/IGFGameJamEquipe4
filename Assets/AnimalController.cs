@@ -3,17 +3,19 @@ using UnityEngine;
 
 public class AnimalController : MonoBehaviour
 {
-    public float maxSpeed = 5f;
-    public float maxForce = 0.5f;
-    public float neighborRadius = 3f;
-    public float separationDistance = 1.5f;
-    public float obstacleAvoidanceDistance = 5f;
-    public LayerMask obstacleMask;
-    public float avoidForce = 2f;
+    [SerializeField] private float maxSpeed = 5f;
+    [SerializeField] private float maxForce = 0.5f;
+    [SerializeField] private float separationDistance = 1.5f;
+    [SerializeField] private float obstacleAvoidanceDistance = 5f;
+    [SerializeField] private LayerMask obstacleMask;
+    [SerializeField] private float avoidForce = 2f;
+    [SerializeField] private Transform target;  // Target for boids to follow
 
+    private List<AnimalController> neighbors = new();
     private Vector3 velocity;
     private Vector3 acceleration;
     private float yPosition;  // Store the initial Y position
+    private float speedMultiplier = 2f;
 
     private void Start()
     {
@@ -23,40 +25,29 @@ public class AnimalController : MonoBehaviour
 
     private void Update()
     {
-        List<GameObject> neighbors = GetNeighbors();
-
         Vector3 separation = Separate(neighbors) * 1.5f;
-        Vector3 alignment = Align(neighbors) * 1f;
+        Vector3 alignment = Align(neighbors) * 0f;
         Vector3 cohesion = Cohere(neighbors) * 1f;
         Vector3 avoidance = AvoidObstacles() * avoidForce;
+        Vector3 seekTarget = SeekTarget() * 1f;
 
         // Apply behaviors
         ApplyForce(separation);
         ApplyForce(alignment);
         ApplyForce(cohesion);
         ApplyForce(avoidance);
+        ApplyForce(seekTarget);
 
         // Move the boid (restricted to X and Z)
         Move();
     }
 
-    private List<GameObject> GetNeighbors()
+    public void SetNeighbors(List<AnimalController> neighbors)
     {
-        List<GameObject> neighbors = new List<GameObject>();
-        Collider[] colliders = Physics.OverlapSphere(transform.position, neighborRadius);
-
-        foreach (var collider in colliders)
-        {
-            if (collider.gameObject != this.gameObject && collider.CompareTag("Animal"))
-            {
-                neighbors.Add(collider.gameObject);
-            }
-        }
-
-        return neighbors;
+        this.neighbors = neighbors;
     }
 
-    private Vector3 Separate(List<GameObject> neighbors)
+    private Vector3 Separate(List<AnimalController> neighbors)
     {
         Vector3 steer = Vector3.zero;
         int count = 0;
@@ -89,14 +80,14 @@ public class AnimalController : MonoBehaviour
         return steer;
     }
 
-    private Vector3 Align(List<GameObject> neighbors)
+    private Vector3 Align(List<AnimalController> neighbors)
     {
         Vector3 sum = Vector3.zero;
         int count = 0;
 
         foreach (var neighbor in neighbors)
         {
-            sum += neighbor.GetComponent<AnimalController>().velocity;
+            sum += neighbor.velocity;
             count++;
         }
 
@@ -111,7 +102,7 @@ public class AnimalController : MonoBehaviour
         return Vector3.zero;
     }
 
-    private Vector3 Cohere(List<GameObject> neighbors)
+    private Vector3 Cohere(List<AnimalController> neighbors)
     {
         Vector3 sum = Vector3.zero;
         int count = 0;
@@ -128,6 +119,15 @@ public class AnimalController : MonoBehaviour
             return Seek(sum);
         }
 
+        return Vector3.zero;
+    }
+
+    private Vector3 SeekTarget()
+    {
+        if (target != null)
+        {
+            return Seek(target.position)*Vector3.Distance(transform.position, target.position)/10;
+        }
         return Vector3.zero;
     }
 
@@ -162,6 +162,16 @@ public class AnimalController : MonoBehaviour
         acceleration += force;
     }
 
+    public Transform GetTarget()
+    {
+        return target;
+    }
+
+    public void SetTarget(Transform target)
+    {
+        this.target = target;
+    }
+
     private void Move()
     {
         velocity += acceleration;
@@ -171,7 +181,7 @@ public class AnimalController : MonoBehaviour
         velocity.y = 0;
 
         // Apply movement (only in X and Z axes)
-        transform.position += velocity * Time.deltaTime;
+        transform.position += velocity * speedMultiplier * Time.deltaTime;
 
         // Keep the Y position constant
         transform.position = new Vector3(transform.position.x, yPosition, transform.position.z);
@@ -184,5 +194,10 @@ public class AnimalController : MonoBehaviour
         }*/
 
         acceleration = Vector3.zero;
+    }
+
+    internal void SetSpeed(float v)
+    {
+        speedMultiplier = v;
     }
 }

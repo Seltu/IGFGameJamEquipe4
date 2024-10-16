@@ -163,7 +163,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 820559881}
+  m_LookAt: {fileID: 0}
   m_Follow: {fileID: 820559881}
   m_Lens:
     FieldOfView: 60.000004
@@ -613,7 +613,7 @@ GameObject:
   - component: {fileID: 1217428843}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1073,6 +1073,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 833200768587548511, guid: acaa71e60f18ac54bb6b7e27dade3bc4, type: 3}
+      propertyPath: m_Constraints
+      value: 116
+      objectReference: {fileID: 0}
     - target: {fileID: 2194467968065847872, guid: acaa71e60f18ac54bb6b7e27dade3bc4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1187,6 +1191,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2787418204654860750, guid: 51ef47fe45746d24587ec905decb3c4e, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 820559881}
     - target: {fileID: 6973671350522692739, guid: 51ef47fe45746d24587ec905decb3c4e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
