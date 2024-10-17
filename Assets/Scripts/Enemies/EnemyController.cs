@@ -14,6 +14,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _minStopDistance;
     [SerializeField] private float _maxStopDistance;
     [SerializeField] private float _speed;
+    [SerializeField] private float _separationRadius = 2.0f;
+    [SerializeField] private float _separationForce = 2.0f;
     private float _stopDistance;
     private float _cooldown;
     private Transform _playerObject;
@@ -39,27 +41,35 @@ public class EnemyController : MonoBehaviour
     }
 
     private void FollowPlayer()
+{
+    _direction = _playerObject.position - transform.position;
+    _direction.y = 0;
+    float distanceToPlayer = _direction.magnitude;
+
+    // Get the separation force
+    Vector3 separationForce = GetSeparationForce();
+
+    // If the enemy is far from the player, follow the player while applying separation
+    if (distanceToPlayer > _stopDistance && !_hasReachedPlayer)
     {
-        _direction = _playerObject.position - transform.position;
-        _direction.y = 0;
-        float distanceToPlayer = _direction.magnitude;
+        _direction.Normalize();
 
-        if (distanceToPlayer > _stopDistance && !_hasReachedPlayer)
-        {
-            _direction.Normalize();
+        // Add separation force to the movement
+        Vector3 finalDirection = (_direction + separationForce).normalized;
 
-            transform.position += _direction * _speed * Time.deltaTime;
-        }
-        else if(distanceToPlayer < _stopDistance && !_hasReachedPlayer)
-        {
-            _hasReachedPlayer = true;
-        }
-        else if(distanceToPlayer > _stopDistance && _hasReachedPlayer)
-        {
-            _stopDistance = RandomizeStopDistance();
-            _hasReachedPlayer = false;
-        }
+        transform.position += finalDirection * _speed * Time.deltaTime;
     }
+    else if(distanceToPlayer < _stopDistance && !_hasReachedPlayer)
+    {
+        _hasReachedPlayer = true;
+    }
+    else if(distanceToPlayer > _stopDistance && _hasReachedPlayer)
+    {
+        _stopDistance = RandomizeStopDistance();
+        _hasReachedPlayer = false;
+    }
+}
+
 
     private void ShootPlayer()
     {
@@ -77,4 +87,39 @@ public class EnemyController : MonoBehaviour
     {
         return Random.Range(_minStopDistance, _maxStopDistance);
     }
+
+    private Vector3 GetSeparationForce()
+    {
+        Vector3 separation = Vector3.zero;
+        int nearbyEnemiesCount = 0;
+
+        // Get all enemies within a certain radius
+        Collider[] nearbyEnemies = Physics.OverlapSphere(transform.position, _separationRadius);
+
+        foreach (Collider enemy in nearbyEnemies)
+        {
+            // Make sure the detected collider is an enemy and not the current one
+            if (enemy.gameObject != this.gameObject && enemy.CompareTag("Enemy"))
+            {
+                // Calculate the distance and direction from the other enemy
+                Vector3 directionAway = transform.position - enemy.transform.position;
+                float distance = directionAway.magnitude;
+
+                // The closer the enemy, the stronger the repulsion force
+                if (distance > 0)
+                {
+                    separation += directionAway.normalized / distance;
+                    nearbyEnemiesCount++;
+                }
+        }
+    }
+
+    // Average out the separation force if there are nearby enemies
+    if (nearbyEnemiesCount > 0)
+    {
+        separation /= nearbyEnemiesCount;
+    }
+
+    return separation * _separationForce;
+}
 }
