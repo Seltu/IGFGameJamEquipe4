@@ -8,6 +8,8 @@ TagManager:
   - Obstacle
   - Ground
   - Enemy
+  - Avoid
+  - Music
   layers:
   - Default
   - TransparentFX
