@@ -23,7 +23,7 @@ public class FlockController : MonoBehaviour
     {
         EventManager.onDeathEvent += CheckTargetDeath;
         for (int i = 0; i < _initialAmount; i++) {
-            var animal = Instantiate(_animalPrefabs[Random.Range(0, _animalPrefabs.Count)]);
+            var animal = Instantiate(_animalPrefabs[Random.Range(0, _animalPrefabs.Count)], transform.position, Quaternion.identity);
             animal.SetTarget(transform);
             _animals.Add(animal);
         }
@@ -84,7 +84,7 @@ public class FlockController : MonoBehaviour
             {
                 if (_selectingEnemies)
                 {
-                    if (_distributionIndex < _animals.Count)
+                    if (_distributionIndex < _animals.Count&&_selectedEnemies.Count>0)
                     {
                         var currentEnemy = _selectedEnemies[_distributionIndex % _selectedEnemies.Count];
                         if (_animals[_distributionIndex].GetTarget() != currentEnemy)

@@ -12,6 +12,7 @@ public class AnimalController : MonoBehaviour
     [SerializeField] private Transform _target;  // Target for boids to follow
     [SerializeField] private float _attackTime = 1f;
     [SerializeField] private int _attackDamage = 1;
+    [SerializeField] private Rigidbody _rb;
 
     private List<AnimalController> _neighbors = new();
     private Vector3 _velocity;
@@ -196,10 +197,7 @@ public class AnimalController : MonoBehaviour
         _velocity.y = 0;
 
         // Apply movement (only in X and Z axes)
-        transform.position += _velocity * _speedMultiplier * Time.deltaTime;
-
-        // Keep the Y position constant
-        transform.position = new Vector3(transform.position.x, _yPosition, transform.position.z);
+        _rb.velocity = _velocity * _speedMultiplier;
 
         /* Rotate to face the direction it's moving (ignore Y rotation)
         if (velocity != Vector3.zero)
