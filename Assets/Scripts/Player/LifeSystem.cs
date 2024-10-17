@@ -9,10 +9,9 @@ public class LifeSystem : MonoBehaviour
     [SerializeField] private float _maxLife;
     private float _currentLife;
 
-    protected void Start()
+    protected virtual void Start()
     {   
         // Events
-        EventManager.onDeathEvent += CallDeathCoroutine;
         EventManager.onTakeDamageEvent += TakeDamage;
 
         //Logic
@@ -21,15 +20,15 @@ public class LifeSystem : MonoBehaviour
 
     private void OnDestroy()
     {
-        EventManager.onDeathEvent -= CallDeathCoroutine;
         EventManager.onTakeDamageEvent -= TakeDamage;
     }
 
-    private void TakeDamage(float damageTaken)
+    private void TakeDamage(float damageTaken, GameObject damagedObject)
     {
+        if (!damagedObject.Equals(gameObject)) return;
         if(_currentLife - damageTaken <= 0)
         {
-            EventManager.OnDeathTrigger();
+            CallDeathCoroutine();
         }
         else
         {
@@ -47,7 +46,7 @@ public class LifeSystem : MonoBehaviour
         //play animations and sound
 
         yield return new WaitForSeconds(_deathDelay);
-        
+        EventManager.OnDeathTrigger(gameObject);
         Destroy(gameObject);
     }
 }

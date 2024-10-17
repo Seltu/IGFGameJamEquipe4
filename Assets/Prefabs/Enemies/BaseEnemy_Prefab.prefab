@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 523109064190557508}
   - component: {fileID: 8399388181499209572}
   - component: {fileID: 913673855983119883}
+  - component: {fileID: 7818730097467232706}
   m_Layer: 0
   m_Name: BaseEnemy_Prefab
   m_TagString: Enemy
@@ -213,8 +214,22 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 3636811652536261883, guid: 10e8f537e06466c4da446beb2ee79786, type: 3}
   _shootPoint: {fileID: 2034803258641929434}
   _fireRate: 3
-  _minStopDistance: 6
+  _minStopDistance: 2
   _maxStopDistance: 10
-  _speed: 3
-  _separationRadius: 2
-  _separationForce: 2
+  _speed: 1
+  _separationRadius: 20
+  _separationForce: 10
+--- !u!114 &7818730097467232706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3310823586409217116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a6bd787976d30244835011c29b09a70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deathDelay: 0.1
+  _maxLife: 10

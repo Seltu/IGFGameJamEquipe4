@@ -46,14 +46,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 5
-  maxForce: 0.5
-  separationDistance: 2
-  obstacleAvoidanceDistance: 2
+  maxForce: 0.1
+  separationDistance: 1.5
+  obstacleAvoidanceDistance: 5
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   avoidForce: 2
   target: {fileID: 0}
+  attackTime: 1
+  attackDamage: 1
 --- !u!1 &1867538972802297843
 GameObject:
   m_ObjectHideFlags: 0
