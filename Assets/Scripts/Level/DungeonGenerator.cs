@@ -16,7 +16,7 @@ public class DungeonGenerator : MonoBehaviour
     private bool[][] roomPos;
     public int roomLength = 30;
     public int roomWidth = 30;
-    private void Start()
+    private void Awake()
     {
         roomPos =  new bool[length][];
         for (int i = 0; i < roomPos.Length; i++)
