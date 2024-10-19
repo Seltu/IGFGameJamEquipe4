@@ -18,20 +18,26 @@ public class FlockController : MonoBehaviour
     private bool _selectingEnemies;
     private int _distributionIndex;
     private bool _freeAnimals;
+    private int _totalAnimalsDiscarted;
 
     private void Start()
     {
         EventManager.onDeathEvent += CheckTargetDeath;
+        EventManager.onPlayerGotHitEvent += OnPlayerHitDiscard;
+        
         for (int i = 0; i < _initialAmount; i++) {
             var animal = Instantiate(_animalPrefabs[Random.Range(0, _animalPrefabs.Count)], transform.position, Quaternion.identity);
             animal.SetTarget(transform);
             _animals.Add(animal);
         }
+
+        EventManager.OnUpdateAnimalCountTrigger(_animals.Count);
     }
 
     private void OnDestroy()
     {
         EventManager.onDeathEvent -= CheckTargetDeath;
+        EventManager.onPlayerGotHitEvent -= OnPlayerHitDiscard;
     }
 
     private void CheckTargetDeath(GameObject dead)
@@ -132,5 +138,45 @@ public class FlockController : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnPlayerHitDiscard()
+    {
+        if(_animals.Count <= 6 && (_animals.Count - 3) > 0)
+        {
+            _totalAnimalsDiscarted = 3;
+        }
+        else if(_animals.Count <= 6 && (_animals.Count - 3) <= 0)
+        {
+            _totalAnimalsDiscarted = _animals.Count;
+        }
+        else
+        {
+            _totalAnimalsDiscarted = _animals.Count / 2;
+        }
+
+        for(int i = 0; i < _totalAnimalsDiscarted; i++)
+        {
+            StartCoroutine(DiscardAnimals());
+        }
+        
+        EventManager.OnUpdateAnimalCountTrigger(_animals.Count);
+
+        if(_animals.Count <= 0)
+        {
+            EventManager.OnGameOverTrigger();
+        }
+    }
+
+    private IEnumerator DiscardAnimals()
+    {
+        AnimalController tempAnimal = _animals[0];
+
+        tempAnimal.AnimalDeath();
+        tempAnimal.GetThrowObject().InpulseThrow();
+        _animals.RemoveAt(0);
+
+        yield return new WaitForSeconds(2);
+        Destroy(tempAnimal.gameObject);        
     }
 }

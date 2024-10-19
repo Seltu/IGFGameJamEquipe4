@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class AnimalController : MonoBehaviour
 {
+    [SerializeField] private ThrowObject _throwObject;
     [SerializeField] private float _maxSpeed = 5f;
     [SerializeField] private float _maxForce = 0.1f;
     [SerializeField] private float _separationDistance = 1.5f;
@@ -21,6 +22,7 @@ public class AnimalController : MonoBehaviour
     private float _speedMultiplier = 2f;
     private bool _attacking;
     private float _attackTimer;
+    private bool _isDead = false;
 
     private void Start()
     {
@@ -30,6 +32,8 @@ public class AnimalController : MonoBehaviour
 
     private void Update()
     {
+        if(_isDead) return;
+        
         Vector3 separation = Separate(_neighbors) * 1.5f;
         Vector3 alignment = Align(_neighbors) * 0f;
         Vector3 cohesion = Cohere(_neighbors) * 1f;
@@ -59,6 +63,11 @@ public class AnimalController : MonoBehaviour
     public void SetNeighbors(List<AnimalController> neighbors)
     {
         this._neighbors = neighbors;
+    }
+
+    public ThrowObject GetThrowObject()
+    {
+        return _throwObject;
     }
 
     private Vector3 Separate(List<AnimalController> neighbors)
@@ -212,5 +221,11 @@ public class AnimalController : MonoBehaviour
     internal void SetSpeed(float v)
     {
         _speedMultiplier = v;
+    }
+
+    public void AnimalDeath()
+    {
+        _velocity = Vector3.zero;
+        _isDead = true;
     }
 }
