@@ -12,6 +12,9 @@ public class ThrowObject : MonoBehaviour
     public void InpulseThrow()
     {   
         Debug.Log("UAAAAA");
+        
+        _rb.useGravity = true;
+
         Vector3 randomDirection = Random.insideUnitSphere;
         randomDirection.y = Mathf.Abs(randomDirection.y); 
 
