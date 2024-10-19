@@ -89,47 +89,51 @@ public class DungeonGenerator : MonoBehaviour
                     // Check adjacent rooms and instantiate doors or walls accordingly
 
                     // Check left
-                    if (i > 0 && roomPos[i - 1][j]) // If there is a room to the left
+                    if (i > 0 && roomPos[i - 1][j]) // Room to the left
                     {
                         Instantiate(doorPrefab, room.transform.position + Vector3.left * roomLength / 2, Quaternion.identity, transform);
                     }
-                    else // No room to the left
+                    else if (i >= 0) // No room to the left
                     {
                         Instantiate(wallPrefab, room.transform.position + Vector3.left * roomLength / 2, Quaternion.identity, transform);
                     }
 
-                    // Check right
-                    if (i < roomPos.Length - 1 && roomPos[i + 1][j]) // If there is a room to the right
-                    {
-                        Instantiate(doorPrefab, room.transform.position + Vector3.right * roomLength / 2, Quaternion.identity, transform);
-                    }
-                    else // No room to the right
-                    {
-                        Instantiate(wallPrefab, room.transform.position + Vector3.right * roomLength / 2, Quaternion.identity, transform);
-                    }
-
                     // Check down
-                    if (j > 0 && roomPos[i][j - 1]) // If there is a room below
+                    if (j > 0 && roomPos[i][j - 1]) // Room below
                     {
                         var door = Instantiate(doorPrefab, room.transform.position + Vector3.back * roomWidth / 2, Quaternion.identity, transform);
-                        door.transform.rotation = Quaternion.Euler(0, 90, 0);
+                        door.transform.rotation = Quaternion.Euler(0, 90, 0); // Rotate 90 degrees
                     }
-                    else // No room below
+                    else if (j >= 0) // No room below
                     {
-                        var door = Instantiate(wallPrefab, room.transform.position + Vector3.back * roomWidth / 2, Quaternion.identity, transform);
-                        door.transform.rotation = Quaternion.Euler(0, 90, 0);
+                        var wall = Instantiate(wallPrefab, room.transform.position + Vector3.back * roomWidth / 2, Quaternion.identity, transform);
+                        wall.transform.rotation = Quaternion.Euler(0, 90, 0); // Rotate 90 degrees
                     }
 
-                    // Check up
-                    if (j < roomPos[i].Length - 1 && roomPos[i][j + 1]) // If there is a room above
+                    // Check right (place wall only if no adjacent room exists or if it's the last column)
+                    if (i < roomPos.Length - 1)
                     {
-                        var door = Instantiate(doorPrefab, room.transform.position + Vector3.forward * roomWidth / 2, Quaternion.identity, transform);
-                        door.transform.rotation = Quaternion.Euler(0, 90, 0);
+                        if (!roomPos[i + 1][j]) // No room to the right
+                        {
+                            Instantiate(wallPrefab, room.transform.position + Vector3.right * roomLength / 2, Quaternion.identity, transform);
+                        }
                     }
-                    else // No room above
+                    else
+                        Instantiate(wallPrefab, room.transform.position + Vector3.right * roomLength / 2, Quaternion.identity, transform);
+
+                    // Check up (place wall only if no adjacent room exists or if it's the last row)
+                    if (j < roomPos[i].Length - 1)
                     {
-                        var door = Instantiate(wallPrefab, room.transform.position + Vector3.forward * roomWidth / 2, Quaternion.identity, transform);
-                        door.transform.rotation = Quaternion.Euler(0, 90, 0);
+                        if (!roomPos[i][j + 1]) // No room above
+                        {
+                            var wall = Instantiate(wallPrefab, room.transform.position + Vector3.forward * roomWidth / 2, Quaternion.identity, transform);
+                            wall.transform.rotation = Quaternion.Euler(0, 90, 0); // Rotate 90 degrees
+                        }
+                    }
+                    else
+                    {
+                        var wall = Instantiate(wallPrefab, room.transform.position + Vector3.forward * roomWidth / 2, Quaternion.identity, transform);
+                        wall.transform.rotation = Quaternion.Euler(0, 90, 0); // Rotate 90 degrees
                     }
                 }
             }
