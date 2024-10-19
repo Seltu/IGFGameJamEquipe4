@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2251389646047477535
+--- !u!1001 &6251387967815678746
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -52,18 +52,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room 2
       objectReference: {fileID: 0}
-    - target: {fileID: 6747880970640749515, guid: e1c044fe66eb04a4a87241bdcce5eb05, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 6035308636913628612, guid: e1c044fe66eb04a4a87241bdcce5eb05, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5c403f5efa2388144b9ad8f0e21b276b, type: 2}
     - target: {fileID: 6747880970640749515, guid: e1c044fe66eb04a4a87241bdcce5eb05, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 470e621e8970c7844bcbdc31c59ff5f5, type: 2}
-    - target: {fileID: 6747880970640749515, guid: e1c044fe66eb04a4a87241bdcce5eb05, type: 3}
-      propertyPath: m_Materials.Array.data[1]
+    - target: {fileID: 7428361638934000822, guid: e1c044fe66eb04a4a87241bdcce5eb05, type: 3}
+      propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: cfb86b8ff9a5372499ca8770732f4fa8, type: 2}
+      objectReference: {fileID: 2100000, guid: 5c403f5efa2388144b9ad8f0e21b276b, type: 2}
+    - target: {fileID: 8711611073427664475, guid: e1c044fe66eb04a4a87241bdcce5eb05, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5c403f5efa2388144b9ad8f0e21b276b, type: 2}
+    - target: {fileID: 9008585276705556910, guid: e1c044fe66eb04a4a87241bdcce5eb05, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5c403f5efa2388144b9ad8f0e21b276b, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
