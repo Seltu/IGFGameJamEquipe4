@@ -8,6 +8,8 @@ public class EnemyController : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private Transform _shootPoint;
+    [SerializeField] private Transform _visual;
+    [SerializeField] private Transform _cannonVisual;
 
     [Header("Variables")]
     [SerializeField] private float _fireRate;
@@ -58,7 +60,11 @@ public class EnemyController : MonoBehaviour
         Vector3 finalDirection = (_direction + separationForce).normalized;
 
         transform.position += finalDirection * _speed * Time.deltaTime;
-    }
+        Vector3 flatForward = new Vector3(finalDirection.x, 0, finalDirection.z).normalized;
+        _visual.forward = Vector3.Lerp(_visual.forward, flatForward, Time.deltaTime);
+        flatForward = new Vector3(_direction.x, 0, _direction.z);
+        _cannonVisual.forward = flatForward;
+        }
     else if(distanceToPlayer < _stopDistance && !_hasReachedPlayer)
     {
         _hasReachedPlayer = true;

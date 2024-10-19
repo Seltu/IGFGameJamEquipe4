@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         // Move the character in the XZ plane (3D movement while ignoring Y for a flat plane)
-        Vector3 newPosition = rb.position + movement * moveSpeed * Time.fixedDeltaTime;
-        rb.MovePosition(newPosition);
+        rb.velocity = movement * moveSpeed;
     }
 }

@@ -3,15 +3,19 @@ using UnityEngine;
 
 public class AnimalController : MonoBehaviour
 {
+    [SerializeField] private ThrowObject _throwObject;
     [SerializeField] private float _maxSpeed = 5f;
     [SerializeField] private float _maxForce = 0.1f;
     [SerializeField] private float _separationDistance = 1.5f;
+    [SerializeField] private float _separateForce = 1.5f;
     [SerializeField] private float _obstacleAvoidanceDistance = 5f;
     [SerializeField] private LayerMask _obstacleMask;
     [SerializeField] private float _avoidForce = 2f;
     [SerializeField] private Transform _target;  // Target for boids to follow
     [SerializeField] private float _attackTime = 1f;
     [SerializeField] private int _attackDamage = 1;
+    [SerializeField] private Rigidbody _rb;
+    [SerializeField] private Collider _collider;
 
     private List<AnimalController> _neighbors = new();
     private Vector3 _velocity;
@@ -20,6 +24,7 @@ public class AnimalController : MonoBehaviour
     private float _speedMultiplier = 2f;
     private bool _attacking;
     private float _attackTimer;
+    private bool _isDead = false;
 
     private void Start()
     {
@@ -29,7 +34,9 @@ public class AnimalController : MonoBehaviour
 
     private void Update()
     {
-        Vector3 separation = Separate(_neighbors) * 1.5f;
+        if(_isDead) return;
+        
+        Vector3 separation = Separate(_neighbors) * _separateForce;
         Vector3 alignment = Align(_neighbors) * 0f;
         Vector3 cohesion = Cohere(_neighbors) * 1f;
         Vector3 avoidance = AvoidObstacles() * _avoidForce;
@@ -58,6 +65,11 @@ public class AnimalController : MonoBehaviour
     public void SetNeighbors(List<AnimalController> neighbors)
     {
         this._neighbors = neighbors;
+    }
+
+    public ThrowObject GetThrowObject()
+    {
+        return _throwObject;
     }
 
     private Vector3 Separate(List<AnimalController> neighbors)
@@ -187,6 +199,11 @@ public class AnimalController : MonoBehaviour
         this._target = target;
     }
 
+    public void SetCollider(bool state)
+    {
+        _collider.enabled = state;
+    }
+
     private void Move()
     {
         _velocity += _acceleration;
@@ -196,10 +213,7 @@ public class AnimalController : MonoBehaviour
         _velocity.y = 0;
 
         // Apply movement (only in X and Z axes)
-        transform.position += _velocity * _speedMultiplier * Time.deltaTime;
-
-        // Keep the Y position constant
-        transform.position = new Vector3(transform.position.x, _yPosition, transform.position.z);
+        _rb.velocity = _velocity * _speedMultiplier;
 
         /* Rotate to face the direction it's moving (ignore Y rotation)
         if (velocity != Vector3.zero)
@@ -214,5 +228,11 @@ public class AnimalController : MonoBehaviour
     internal void SetSpeed(float v)
     {
         _speedMultiplier = v;
+    }
+
+    public void AnimalDeath()
+    {
+        _velocity = Vector3.zero;
+        _isDead = true;
     }
 }

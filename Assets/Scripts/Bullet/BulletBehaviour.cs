@@ -12,12 +12,11 @@ public class BulletBehaviour : MonoBehaviour
     {
         if(col.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Player pegou Bala");
+            EventManager.OnPlayerGotHitTrigger();
             Destroy(gameObject);
         }
         else if(col.gameObject.layer == 3)
         {
-            Debug.Log("Bala perdida");
             Destroy(gameObject);
         }
     }
