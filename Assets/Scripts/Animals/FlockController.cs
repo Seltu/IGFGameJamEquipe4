@@ -10,11 +10,13 @@ public class FlockController : MonoBehaviour
     [SerializeField] private List<AnimalController> _animalPrefabs;
     [SerializeField] private int _initialAmount;
     [SerializeField] private float _assignTime;
+    [SerializeField] private float _standByTime;
     [SerializeField] private float _animalNeighborRadius = 3f;
     [SerializeField] private Transform _mouseTarget;
     private List<Transform> _selectedEnemies = new();
     private List<AnimalController> _animals = new();
     private float _assignTimer = 0.2f;
+    private float _standByTimer = 0;
     private bool _selectingEnemies;
     private int _distributionIndex;
     private bool _freeAnimals;
@@ -24,14 +26,28 @@ public class FlockController : MonoBehaviour
     {
         EventManager.onDeathEvent += CheckTargetDeath;
         EventManager.onPlayerGotHitEvent += OnPlayerHitDiscard;
-        
+        EventManager.onCombatStartEvent += Reunite;
         for (int i = 0; i < _initialAmount; i++) {
             var animal = Instantiate(_animalPrefabs[Random.Range(0, _animalPrefabs.Count)], transform.position, Quaternion.identity);
             animal.SetTarget(transform);
+            animal.SetCollider(false);
             _animals.Add(animal);
         }
 
         EventManager.OnUpdateAnimalCountTrigger(_animals.Count);
+    }
+
+    private void Reunite()
+    {
+        _standByTimer = _standByTime;
+        foreach (var animal in _animals)
+        {
+            animal.SetTarget(transform);
+            animal.SetCollider(false);
+            animal.SetSpeed(4f);
+        }
+        _selectingEnemies = false;
+        _selectedEnemies.Clear();
     }
 
     private void OnDestroy()
@@ -47,6 +63,7 @@ public class FlockController : MonoBehaviour
             if(animal.GetTarget().Equals(dead.transform))
             {
                 animal.SetTarget(transform);
+                animal.SetCollider(false);
                 _selectedEnemies.Remove(dead.transform);
                 if (_selectedEnemies.Count > 0)
                     _freeAnimals = true;
@@ -77,11 +94,16 @@ public class FlockController : MonoBehaviour
         if(_assignTimer>0)
             _assignTimer -= Time.deltaTime;
         CheckAnimalNeighbors();
+        if(_standByTimer > 0) {
+            _standByTimer -= Time.deltaTime;
+            return;
+        }
         if (Input.GetMouseButtonUp(0))
         {
             foreach (var animal in _animals)
             {
                 animal.SetTarget(transform);
+                animal.SetCollider(false);
                 animal.SetSpeed(2f);
             }
             _selectingEnemies = false;
@@ -99,6 +121,7 @@ public class FlockController : MonoBehaviour
                         if (_animals[_distributionIndex].GetTarget() != currentEnemy)
                         {
                             _animals[_distributionIndex].SetTarget(currentEnemy);
+                            _animals[_distributionIndex].SetCollider(true);
                             _animals[_distributionIndex].SetSpeed(3f);
                             _assignTimer = _assignTime;
                         }
@@ -112,6 +135,7 @@ public class FlockController : MonoBehaviour
                     {
                         var animal = freeAnimals.OrderBy(obj => (obj.transform.position - _mouseTarget.position).sqrMagnitude).FirstOrDefault();
                         animal.SetTarget(_mouseTarget);
+                        animal.SetCollider(true);
                         animal.SetSpeed(3f);
                         _assignTimer = _assignTime;
                     }

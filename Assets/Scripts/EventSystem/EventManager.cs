@@ -19,6 +19,11 @@ public static class EventManager
 
     public delegate void OnUpdateAnimalCount(int count);
     public static event OnUpdateAnimalCount onUpdateAnimalCountEvent;
+    public delegate void OnCombatStart();
+    public static event OnCombatStart onCombatStartEvent;
+
+    public delegate void OnCombatEnd();
+    public static event OnCombatStart onCombatEndEvent;
     #endregion
 
 
@@ -47,6 +52,16 @@ public static class EventManager
     public static void OnUpdateAnimalCountTrigger(int count)
     {
         onUpdateAnimalCountEvent?.Invoke(count);
+    
+    }
+    public static void OnCombatStartTrigger()
+    {
+        onCombatStartEvent?.Invoke();
+    }
+
+    public static void OnCombatEndTrigger()
+    {
+        onCombatEndEvent?.Invoke();
     }
     #endregion
 }

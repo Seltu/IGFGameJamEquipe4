@@ -6,9 +6,14 @@ public class EnableOnTriggerEnter : MonoBehaviour
 {
     [SerializeField] private Renderer rendererToEnable;
     [SerializeField] private bool disableInstead;
+    private bool triggeredOnce;
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (triggeredOnce) return;
+        if (other.CompareTag("Player"))
+        {
             rendererToEnable.enabled = !disableInstead;
+            triggeredOnce = true;
+        }
     }
 }

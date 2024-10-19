@@ -102,6 +102,7 @@ MonoBehaviour:
   _maxSpeed: 5
   _maxForce: 0.1
   _separationDistance: 1.5
+  _separateForce: 1.5
   _obstacleAvoidanceDistance: 5
   _obstacleMask:
     serializedVersion: 2
@@ -111,6 +112,7 @@ MonoBehaviour:
   _attackTime: 1
   _attackDamage: 1
   _rb: {fileID: 237936825447242147}
+  _collider: {fileID: 9091421560581664745}
 --- !u!114 &-3114723597316966262
 MonoBehaviour:
   m_ObjectHideFlags: 0

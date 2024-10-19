@@ -7,6 +7,7 @@ public class AnimalController : MonoBehaviour
     [SerializeField] private float _maxSpeed = 5f;
     [SerializeField] private float _maxForce = 0.1f;
     [SerializeField] private float _separationDistance = 1.5f;
+    [SerializeField] private float _separateForce = 1.5f;
     [SerializeField] private float _obstacleAvoidanceDistance = 5f;
     [SerializeField] private LayerMask _obstacleMask;
     [SerializeField] private float _avoidForce = 2f;
@@ -14,6 +15,7 @@ public class AnimalController : MonoBehaviour
     [SerializeField] private float _attackTime = 1f;
     [SerializeField] private int _attackDamage = 1;
     [SerializeField] private Rigidbody _rb;
+    [SerializeField] private Collider _collider;
 
     private List<AnimalController> _neighbors = new();
     private Vector3 _velocity;
@@ -34,7 +36,7 @@ public class AnimalController : MonoBehaviour
     {
         if(_isDead) return;
         
-        Vector3 separation = Separate(_neighbors) * 1.5f;
+        Vector3 separation = Separate(_neighbors) * _separateForce;
         Vector3 alignment = Align(_neighbors) * 0f;
         Vector3 cohesion = Cohere(_neighbors) * 1f;
         Vector3 avoidance = AvoidObstacles() * _avoidForce;
@@ -195,6 +197,11 @@ public class AnimalController : MonoBehaviour
     public void SetTarget(Transform target)
     {
         this._target = target;
+    }
+
+    public void SetCollider(bool state)
+    {
+        _collider.enabled = state;
     }
 
     private void Move()

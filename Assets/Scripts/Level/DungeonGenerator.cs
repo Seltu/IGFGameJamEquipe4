@@ -140,7 +140,8 @@ public class DungeonGenerator : MonoBehaviour
         }
         var firstRoom = Instantiate(startRoom, transform);
         firstRoom.transform.position = last.transform.position;
-        player.position = firstRoom.transform.position;
+        last.transform.position = Vector3.up * 9999;
         Destroy(last);
+        player.position = firstRoom.transform.position;
     }
 }

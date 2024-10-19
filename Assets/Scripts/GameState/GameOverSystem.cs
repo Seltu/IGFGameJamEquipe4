@@ -12,6 +12,11 @@ public class GameOverSystem : MonoBehaviour
         EventManager.onGameOverEvent += OnGameLoss;
     }
 
+    private void OnDestroy()
+    {
+        EventManager.onGameOverEvent -= OnGameLoss;
+    }
+
     private void OnGameLoss()
     {
         StartCoroutine(GameOverRoutine());
