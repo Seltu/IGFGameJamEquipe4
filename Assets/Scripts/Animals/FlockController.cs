@@ -27,14 +27,11 @@ public class FlockController : MonoBehaviour
         EventManager.onDeathEvent += CheckTargetDeath;
         EventManager.onPlayerGotHitEvent += OnPlayerHitDiscard;
         EventManager.onCombatStartEvent += Reunite;
-        for (int i = 0; i < _initialAmount; i++) {
-            var animal = Instantiate(_animalPrefabs[Random.Range(0, _animalPrefabs.Count)], transform.position, Quaternion.identity);
-            animal.SetTarget(transform);
-            animal.SetCollider(false);
-            _animals.Add(animal);
-        }
 
-        EventManager.OnUpdateAnimalCountTrigger(_animals.Count);
+        for (int i = 0; i < _initialAmount; i++)
+        {
+            CreateAnimal(this.transform);
+        }
     }
 
     private void Reunite()
@@ -56,12 +53,22 @@ public class FlockController : MonoBehaviour
         EventManager.onPlayerGotHitEvent -= OnPlayerHitDiscard;
     }
 
+    private void CreateAnimal(Transform pos)
+    {
+        var animal = Instantiate(_animalPrefabs[Random.Range(0, _animalPrefabs.Count)], pos.position, Quaternion.identity);
+            animal.SetTarget(pos);
+            animal.SetCollider(false);
+            _animals.Add(animal);
+
+        EventManager.OnUpdateAnimalCountTrigger(_animals.Count);
+    }
+
     private void CheckTargetDeath(GameObject dead)
     {
         foreach (var animal in _animals)
         {
             if(animal.GetTarget().Equals(dead.transform))
-            {
+            {  
                 animal.SetTarget(transform);
                 animal.SetCollider(false);
                 _selectedEnemies.Remove(dead.transform);
@@ -71,6 +78,8 @@ public class FlockController : MonoBehaviour
                     _selectingEnemies = false;
             }
         }
+
+        CreateAnimal(dead.transform);
     }
 
     private void CheckAnimalNeighbors()
