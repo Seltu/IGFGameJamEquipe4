@@ -42,7 +42,10 @@ public class FlockController : MonoBehaviour
             {
                 animal.SetTarget(transform);
                 _selectedEnemies.Remove(dead.transform);
-                _freeAnimals = true;
+                if (_selectedEnemies.Count > 0)
+                    _freeAnimals = true;
+                else
+                    _selectingEnemies = false;
             }
         }
     }
