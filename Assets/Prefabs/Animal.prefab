@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2627407655583539501}
-  - component: {fileID: 6238163632049916755}
   - component: {fileID: 237936825447242147}
   - component: {fileID: 9091421560581664745}
+  - component: {fileID: 6238163632049916755}
+  - component: {fileID: -3114723597316966262}
   m_Layer: 6
   m_Name: Animal
   m_TagString: Animal
@@ -35,30 +36,6 @@ Transform:
   - {fileID: 189539129746198450}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6238163632049916755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1387944413810166803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f98678258fbf54843bcbcf13424f6820, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxSpeed: 5
-  _maxForce: 0.1
-  _separationDistance: 1.5
-  _obstacleAvoidanceDistance: 5
-  _obstacleMask:
-    serializedVersion: 2
-    m_Bits: 8
-  _avoidForce: 2
-  _target: {fileID: 0}
-  _attackTime: 1
-  _attackDamage: 1
-  _rb: {fileID: 237936825447242147}
 --- !u!54 &237936825447242147
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -81,10 +58,10 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &9091421560581664745
 CapsuleCollider:
@@ -96,10 +73,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 264
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 119
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -109,6 +86,47 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &6238163632049916755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387944413810166803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f98678258fbf54843bcbcf13424f6820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _throwObject: {fileID: -3114723597316966262}
+  _maxSpeed: 5
+  _maxForce: 0.1
+  _separationDistance: 1.5
+  _obstacleAvoidanceDistance: 5
+  _obstacleMask:
+    serializedVersion: 2
+    m_Bits: 8
+  _avoidForce: 2
+  _target: {fileID: 0}
+  _attackTime: 1
+  _attackDamage: 1
+  _rb: {fileID: 237936825447242147}
+--- !u!114 &-3114723597316966262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387944413810166803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59cec4cbc46f9ca499904fb6b0d5b908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rb: {fileID: 237936825447242147}
+  _col: {fileID: 9091421560581664745}
+  _upForce: 1
+  _randomForce: 23
 --- !u!1 &1867538972802297843
 GameObject:
   m_ObjectHideFlags: 0
