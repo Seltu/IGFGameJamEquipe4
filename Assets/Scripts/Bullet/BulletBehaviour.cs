@@ -12,6 +12,7 @@ public class BulletBehaviour : MonoBehaviour
         if(col.gameObject.CompareTag("Player"))
         {
             EventManager.OnPlayerGotHitTrigger();
+            EventManager.OnShakeCameraTrigger(6, 3, 0.7f);
             Destroy(gameObject);
         }
         else if(col.gameObject.layer == 3)
