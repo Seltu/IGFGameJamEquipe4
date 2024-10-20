@@ -9,6 +9,8 @@ public class LifeSystem : MonoBehaviour
     [SerializeField] private float _maxLife;
     private float _currentLife;
 
+    public bool Trosso = false;
+
     protected virtual void Start()
     {   
         // Events
