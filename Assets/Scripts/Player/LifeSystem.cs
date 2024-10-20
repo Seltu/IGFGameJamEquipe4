@@ -7,9 +7,11 @@ public class LifeSystem : MonoBehaviour
     [Header("Variables")]
     [SerializeField] private float _deathDelay;
     [SerializeField] private float _maxLife;
+    [SerializeField] private AudioSource hitSound;
+    [SerializeField] private AudioSource deathSound;
+
     private float _currentLife;
 
-    public bool Trosso = false;
     public bool isDead = false;
 
     protected virtual void Start()
@@ -19,6 +21,7 @@ public class LifeSystem : MonoBehaviour
 
         //Logic
         _currentLife = _maxLife;
+        _deathDelay = deathSound.clip.length;
     }
 
     private void OnDestroy()
@@ -36,6 +39,7 @@ public class LifeSystem : MonoBehaviour
         else
         {
             _currentLife -= damageTaken;
+            hitSound.Play();
         }
     }
 
@@ -52,6 +56,7 @@ public class LifeSystem : MonoBehaviour
         //play animations and sound
         yield return new WaitForSeconds(_deathDelay);
         EventManager.OnDeathTrigger(gameObject);
+        deathSound.Play();
         Destroy(gameObject);
     }
 }

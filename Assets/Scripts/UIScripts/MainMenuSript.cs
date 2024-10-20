@@ -9,6 +9,7 @@ public class MainMenuSript : MonoBehaviour
     [SerializeField] private float _buttonSoundDelayTime;
     [SerializeField] private string _gameSceneName;
     [SerializeField] private Animator _anim;
+    [SerializeField] private AudioSource clickSound;
 
 
     #region Play Button
@@ -31,12 +32,14 @@ public class MainMenuSript : MonoBehaviour
     public void CreditsButton()
     {
         //play sound 
+        clickSound.Play();
         _anim.SetTrigger("OpenCredits");
     }
 
     public void CreditsBackButton()
     {
         //play sound
+        clickSound.Play();
         _anim.SetTrigger("CloseCredits");
     }
     #endregion
