@@ -7,6 +7,7 @@ public class GameOverScreen : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private float _soundDelay;
+    [SerializeField] private AudioSource clickSound;
 
     private void OnEnable()
     {
@@ -21,11 +22,13 @@ public class GameOverScreen : MonoBehaviour
 
     public void ExitGameButton()
     {
+        clickSound.Play();
         StartCoroutine(ExitSoundDelay());
     }
 
     public void ReestartGameButton()
     {
+        clickSound.Play();
         StartCoroutine(RestartSoundDelay());
     }
 

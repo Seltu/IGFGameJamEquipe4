@@ -21,6 +21,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _separationRadius = 2.0f;
     [SerializeField] private float _separationForce = 2.0f;
+    [SerializeField] private AudioSource shotSound;
     private float _stopDistance;
     private float _cooldown;
     private Transform _playerObject;
@@ -93,6 +94,7 @@ public class EnemyController : MonoBehaviour
         {
             GameObject bullet = Instantiate(_bulletPrefab, _shootPoint.position, Quaternion.identity);
             BulletBehaviour bulletScript = bullet.GetComponent<BulletBehaviour>();
+            shotSound.Play();
 
             // Get the normalized direction towards the player
             Vector3 direction = (_playerObject.transform.position - _shootPoint.position).normalized;

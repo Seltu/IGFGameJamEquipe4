@@ -13,6 +13,10 @@ public class FlockController : MonoBehaviour
     [SerializeField] private float _standByTime;
     [SerializeField] private float _animalNeighborRadius = 3f;
     [SerializeField] private Transform _mouseTarget;
+    [SerializeField] private AudioSource enemySelect;
+    [SerializeField] private AudioSource animalAttack;
+    [SerializeField] private AudioSource HitSound;
+    [SerializeField] private AudioSource CreateAnimalSound;
     private List<Transform> _selectedEnemies = new();
     private List<AnimalController> _animals = new();
     private float _assignTimer = 0.2f;
@@ -59,6 +63,7 @@ public class FlockController : MonoBehaviour
             animal.SetTarget(pos);
             animal.SetCollider(false);
             _animals.Add(animal);
+            CreateAnimalSound.Play();
 
         EventManager.OnUpdateAnimalCountTrigger(_animals.Count);
     }
@@ -135,6 +140,7 @@ public class FlockController : MonoBehaviour
                             _animals[_distributionIndex].SetSpeed(3f);
                             _assignTimer = _assignTime;
                         }
+                        animalAttack.Play();
                         _distributionIndex++;
                     }
                 }
@@ -165,6 +171,7 @@ public class FlockController : MonoBehaviour
                     {
                         if (!_selectedEnemies.Contains(enemy.transform)||_freeAnimals)
                         {
+                            enemySelect.Play();
                             _selectedEnemies.Add(enemy.transform);
                             _selectingEnemies = true;
                             _distributionIndex = 0;
@@ -179,6 +186,8 @@ public class FlockController : MonoBehaviour
 
     private void OnPlayerHitDiscard()
     {
+        HitSound.Play();
+
         if(_animals.Count <= 6 && (_animals.Count - 3) > 0)
         {
             _totalAnimalsDiscarted = 3;
