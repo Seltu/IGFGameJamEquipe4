@@ -68,7 +68,7 @@ public class FlockController : MonoBehaviour
         foreach (var animal in _animals)
         {
             if(animal.GetTarget().Equals(dead.transform))
-            {  
+            {
                 animal.SetTarget(transform);
                 animal.SetCollider(false);
                 _selectedEnemies.Remove(dead.transform);
@@ -78,7 +78,6 @@ public class FlockController : MonoBehaviour
                     _selectingEnemies = false;
             }
         }
-
         CreateAnimal(dead.transform);
     }
 

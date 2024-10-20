@@ -14,10 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefabs:
   - {fileID: 8993248180568299919, guid: 85871b677b39fe84c94df13757b26ed6, type: 3}
+  - {fileID: 8993248180568299919, guid: 9c007388200885147a170d56bdf3af08, type: 3}
+  - {fileID: 8993248180568299919, guid: 0f1d298af8d8ae74b9a0cb4ebbbdd3c7, type: 3}
+  - {fileID: 8993248180568299919, guid: 0c5146f9bd3c5b24eb00689db2eb470a, type: 3}
   combatEncounters:
   - waves:
     - type: 0
+      number: 5
+  - waves:
+    - type: 1
+      number: 2
+    - type: 0
+      number: 2
+  - waves:
+    - type: 1
       number: 3
   - waves:
-    - type: 0
+    - type: 3
+      number: 4
+  - waves:
+    - type: 3
+      number: 2
+    - type: 3
       number: 2

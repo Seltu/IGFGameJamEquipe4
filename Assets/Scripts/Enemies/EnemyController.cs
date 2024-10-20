@@ -13,6 +13,9 @@ public class EnemyController : MonoBehaviour
 
     [Header("Variables")]
     [SerializeField] private float _fireRate;
+    [SerializeField] private float _bulletAmount = 1;
+    [SerializeField] private float _bulletAngle = 0f;
+    [SerializeField] private float _bulletSpeed = 8f;
     [SerializeField] private float _minStopDistance;
     [SerializeField] private float _maxStopDistance;
     [SerializeField] private float _speed;
@@ -30,6 +33,7 @@ public class EnemyController : MonoBehaviour
         _playerObject = GameObject.FindGameObjectWithTag("Player").transform;
         _stopDistance = RandomizeStopDistance();
         _hasReachedPlayer = false;
+        _cooldown += _fireRate * Random.value;
     }
 
     private void Update()
@@ -82,15 +86,33 @@ public class EnemyController : MonoBehaviour
 
     private void ShootPlayer()
     {
-        GameObject bullet = Instantiate(_bulletPrefab, _shootPoint.position, Quaternion.identity);
-        BulletBehaviour bulletScript = bullet.GetComponent<BulletBehaviour>();
-        
-        Vector3 direction = (_playerObject.transform.position - _shootPoint.position).normalized;
+        var angleStep = _bulletAngle / (_bulletAmount - 1); // Increment between each bullet's angle
+        var currentAngle = -_bulletAngle / 2; // Start from negative half of the total angle
 
-        bulletScript.GetBulletRigidBody().velocity = direction * bulletScript.GetBulletSpeed();
+        for (var i = 0; i < _bulletAmount; i++)
+        {
+            GameObject bullet = Instantiate(_bulletPrefab, _shootPoint.position, Quaternion.identity);
+            BulletBehaviour bulletScript = bullet.GetComponent<BulletBehaviour>();
 
-        _cooldown = _fireRate;
+            // Get the normalized direction towards the player
+            Vector3 direction = (_playerObject.transform.position - _shootPoint.position).normalized;
+
+            // Create a rotation based on the current angle around the Y-axis (horizontal plane for 3D)
+            Quaternion rotation = Quaternion.Euler(0, currentAngle, 0);
+
+            // Apply the rotation to the direction
+            Vector3 rotatedDirection = rotation * direction;
+
+            // Set bullet velocity in the rotated direction
+            bulletScript.GetBulletRigidBody().velocity = rotatedDirection * _bulletSpeed;
+            // Increment the angle for the next bullet
+            currentAngle += angleStep;
+
+            _cooldown = _fireRate;
+        }
     }
+
+
 
     private float RandomizeStopDistance()
     {
