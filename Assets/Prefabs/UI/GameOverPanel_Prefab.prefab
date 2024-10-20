@@ -987,6 +987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8b0333b83e183e44a9fbe1aa0f81a7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
   _soundDelay: 0
 --- !u!95 &3843189792484287220
 Animator:
@@ -1085,8 +1086,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4278215496
+  m_fontColor: {r: 0.28235295, g: 0.3882353, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
