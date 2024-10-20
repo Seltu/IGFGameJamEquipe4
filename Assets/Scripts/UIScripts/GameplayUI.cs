@@ -34,10 +34,8 @@ public class GameplayUI : MonoBehaviour
 
     private void PlayPositiveFeedback(GameObject dead)
     {
-            Debug.Log("mamagueavi");
         if(dead.CompareTag("Enemy"))
         {
-            Debug.Log("woah");
             _anim.SetTrigger("Positive");
         }
     }
