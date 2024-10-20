@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class AnimalController : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private ThrowObject _throwObject;
     [SerializeField] private float _maxSpeed = 5f;
     [SerializeField] private float _maxForce = 0.1f;
@@ -215,6 +216,7 @@ public class AnimalController : MonoBehaviour
         // Apply movement (only in X and Z axes)
         _rb.velocity = _velocity * _speedMultiplier;
 
+        _spriteRenderer.flipX = _rb.velocity.x < 0;
         /* Rotate to face the direction it's moving (ignore Y rotation)
         if (velocity != Vector3.zero)
         {
