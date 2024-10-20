@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
+    public static MusicManager Instance;
     public AudioSource audioSource;
     public AudioClip[] musicTracks; // Array to hold different music tracks
 
@@ -13,50 +14,26 @@ public class MusicManager : MonoBehaviour
 
     private void Start()
     {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+
         if (audioSource == null)
             audioSource = GetComponent<AudioSource>();
-        
+
+        foreach (AudioClip clip in musicTracks)
+        {
+            clip.LoadAudioData();
+        }
+
         PlayMusic(0);
-
-        // Delay the search for GameOverPanel_Prefab
-        StartCoroutine(CheckForGameOverPanel());
-    }
-
-    private System.Collections.IEnumerator CheckForGameOverPanel()
-    {
-        yield return new WaitForSeconds(1f); // Wait for 1 second before checking (to reduce startup lag)
-
-        // Find the "GameOverPanel_Prefab" under the "Canvas"
-        GameObject canvas = GameObject.Find("Canvas");
-        if (canvas != null)
-        {
-            gameOverPanel = canvas.transform.Find("GameOverPanel_Prefab")?.gameObject;
-            if (gameOverPanel == null)
-            {
-                Debug.LogWarning("GameOverPanel_Prefab not found under Canvas.");
-            }
-        }
-        else
-        {
-            Debug.LogError("Canvas not found in the scene.");
-        }
     }
 
     private void Update()
     {
-        // Check if the gameOverPanel is active (only if the reference is available)
-        if (gameOverPanel != null && gameOverPanel.activeSelf && !isGameOverPanelActive)
-        {
-            isGameOverPanelActive = true;
-            PlayMusic(2);
-        }
-        else if (!gameOverPanel?.activeSelf == true && isGameOverPanelActive)
-        {
-            isGameOverPanelActive = false;
-        }
-
         // Example input controls for testing
-        else if (Input.GetKeyDown(KeyCode.Alpha1)) // Situation 1 (1 on alphabetical keyboard)
+        if (Input.GetKeyDown(KeyCode.Alpha1)) // Situation 1 (1 on alphabetical keyboard)
         {
             PlayMusic(1); // Plays the first track
         }

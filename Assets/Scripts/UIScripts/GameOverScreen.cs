@@ -12,6 +12,7 @@ public class GameOverScreen : MonoBehaviour
     private void OnEnable()
     {
         _animator.Play("GameOverUI");
+        MusicManager.Instance.PlayMusic(2);
     }
 
     public void GoToMenuButton()
