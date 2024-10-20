@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e06de73c3e0b1439a00fbef8a4222a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelInfoSO: {fileID: 11400000, guid: 97683b6d57b557c4fa051286ec253e1a, type: 2}
   _animalPrefabs:
   - {fileID: 6238163632049916755, guid: ef3057ae2448c134e866db30d7ef7d12, type: 3}
   _initialAmount: 5
-  _assignTime: 0.2
+  _assignTime: 0.1
+  _standByTime: 1
   _animalNeighborRadius: 3
   _mouseTarget: {fileID: 8353606632260871152}
 --- !u!1 &7888734259848114136

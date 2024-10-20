@@ -7,7 +7,7 @@ public class GameplayUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text _animalNumber;
 
-    private void Start()
+    private void Awake()
     {
         EventManager.onUpdateAnimalCountEvent += UpdateText;
     }

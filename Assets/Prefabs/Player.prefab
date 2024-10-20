@@ -178,7 +178,6 @@ GameObject:
   - component: {fileID: 2194467968065847872}
   - component: {fileID: 833200768587548511}
   - component: {fileID: 3962865004530582033}
-  - component: {fileID: 1348946979260589763}
   - component: {fileID: 1193161196386630311}
   - component: {fileID: 4781839709924176554}
   m_Layer: 0
@@ -247,22 +246,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
---- !u!114 &1348946979260589763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8729809597740871807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a6bd787976d30244835011c29b09a70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _deathDelay: 0
-  _maxLife: 10
-  Trosso: 0
---- !u!65 &1193161196386630311
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -395,17 +378,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2194467968065847872}
     m_Modifications:
-    - target: {fileID: 2787418204654860750, guid: 51ef47fe45746d24587ec905decb3c4e, type: 3}
-      propertyPath: _standByTime
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6973671350522692739, guid: 51ef47fe45746d24587ec905decb3c4e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6973671350522692739, guid: 51ef47fe45746d24587ec905decb3c4e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6973671350522692739, guid: 51ef47fe45746d24587ec905decb3c4e, type: 3}
       propertyPath: m_LocalPosition.z

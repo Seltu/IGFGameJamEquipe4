@@ -28,7 +28,7 @@ public class CombatWall : MonoBehaviour
         if (_breakableDoorLife != null)
         {
             _breakableDoorLife.enabled = true;
-            _breakableDoorLife.tag = "Enemy";
+            _breakableDoorLife.tag = "Door";
         }
     }
 

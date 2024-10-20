@@ -6,7 +6,6 @@ public class BulletBehaviour : MonoBehaviour
 {
     [SerializeField] private Collider _col;
     [SerializeField] private Rigidbody _rb;
-    [SerializeField] private float _bulletSpeed;
 
     private void OnTriggerEnter(Collider col)
     {
@@ -24,10 +23,5 @@ public class BulletBehaviour : MonoBehaviour
     public Rigidbody GetBulletRigidBody()
     {
         return _rb;
-    }
-
-    public float GetBulletSpeed()
-    {
-        return _bulletSpeed;
     }
 }
