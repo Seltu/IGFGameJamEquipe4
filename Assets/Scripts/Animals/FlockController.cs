@@ -158,6 +158,9 @@ public class FlockController : MonoBehaviour
                     }
                 }
              }
+
+            if (Time.timeScale <= 0) return;
+                
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 

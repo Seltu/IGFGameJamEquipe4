@@ -70,7 +70,8 @@ public class EnemyController : MonoBehaviour
         }
 
         Vector3 cannonDirection = new Vector3(_direction.x, 0, _direction.z);
-        _cannonVisual.forward = cannonDirection;
+        if(_cannonVisual!=null)
+            _cannonVisual.forward = cannonDirection;
 
         if (distanceToPlayer < _stopDistance && !_hasReachedPlayer)
         {

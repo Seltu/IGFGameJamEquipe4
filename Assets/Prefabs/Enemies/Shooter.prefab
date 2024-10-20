@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0ad787e994062e841a7633c51d874d15, type: 2}
+  - {fileID: 2100000, guid: 614d2960202ac6d4d9c754b3ac22fd63, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6190,7 +6190,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0ad787e994062e841a7633c51d874d15, type: 2}
+  - {fileID: 2100000, guid: 614d2960202ac6d4d9c754b3ac22fd63, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6306,7 +6306,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7818730097467232706, guid: d6341a4d730011745ae3b1a318805d48, type: 3}
       propertyPath: _maxLife
-      value: 25
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7818730097467232706, guid: d6341a4d730011745ae3b1a318805d48, type: 3}
       propertyPath: hitSound
@@ -6316,10 +6316,6 @@ PrefabInstance:
       propertyPath: deathSound
       value: 
       objectReference: {fileID: 4452751295614952250}
-    - target: {fileID: 7818730097467232706, guid: d6341a4d730011745ae3b1a318805d48, type: 3}
-      propertyPath: _deathDelay
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 8399388181499209572, guid: d6341a4d730011745ae3b1a318805d48, type: 3}
       propertyPath: m_Size.x
       value: 3

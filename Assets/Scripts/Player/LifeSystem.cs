@@ -45,7 +45,6 @@ public class LifeSystem : MonoBehaviour
 
     protected void CallDeathCoroutine()
     {
-
         if (isDead) return;
         isDead = true;
         StartCoroutine(DeathRoutine());

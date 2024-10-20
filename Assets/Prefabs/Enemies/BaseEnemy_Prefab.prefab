@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a6bd787976d30244835011c29b09a70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deathDelay: 0.5
+  _deathDelay: 0.1
   _maxLife: 10
   hitSound: {fileID: 6138757906939912159}
   deathSound: {fileID: 7021683411850272963}
