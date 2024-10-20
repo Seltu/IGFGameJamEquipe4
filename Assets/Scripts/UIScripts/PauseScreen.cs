@@ -8,6 +8,7 @@ public class PauseScreen : MonoBehaviour
     [Header("Variables and References")]
     [SerializeField] private GameObject _PausePanel;
     [SerializeField] private float _soundDelay;
+    [SerializeField] private AudioSource clickSound;
     private bool _gameIsPaused;
 
     private void Start()
@@ -36,11 +37,13 @@ public class PauseScreen : MonoBehaviour
     {
         _PausePanel.SetActive(false);
         Time.timeScale = 1;
+        clickSound.Play();
     }
 
     public void GoToMenuButton()
     {
         //play sound
+        clickSound.Play();
         StartCoroutine(MenuSoundDelay());
     }
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameOverSystem : MonoBehaviour
 {
     [SerializeField] private GameObject _gameOverPanel;
+    [SerializeField] private AudioSource gameOverSound;
 
     private void Start()
     {
@@ -18,6 +19,7 @@ public class GameOverSystem : MonoBehaviour
 
     private void OnGameLoss()
     {
+        gameOverSound.Play();
         Time.timeScale = 0;
         _gameOverPanel.SetActive(true);
     }
