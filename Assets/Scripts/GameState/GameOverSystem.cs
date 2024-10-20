@@ -5,7 +5,6 @@ using UnityEngine;
 public class GameOverSystem : MonoBehaviour
 {
     [SerializeField] private GameObject _gameOverPanel;
-    [SerializeField] private float _delay;
 
     private void Start()
     {
@@ -19,13 +18,7 @@ public class GameOverSystem : MonoBehaviour
 
     private void OnGameLoss()
     {
-        StartCoroutine(GameOverRoutine());
-    }
-
-    private IEnumerator GameOverRoutine()
-    {
         Time.timeScale = 0;
         _gameOverPanel.SetActive(true);
-        yield return new WaitForSecondsRealtime(_delay);
     }
 }

@@ -158,7 +158,7 @@ public class FlockController : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Ground"))
                     _mouseTarget.position = hit.point;
-                var aroundHit = Physics.OverlapSphere(hit.point, 3f);
+                var aroundHit = Physics.OverlapSphere(hit.point, 2f);
                 foreach (var enemy in aroundHit)
                 {
                     if (enemy.CompareTag("Enemy") || enemy.CompareTag("Door"))

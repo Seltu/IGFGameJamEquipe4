@@ -5,7 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class GameOverScreen : MonoBehaviour
 {
+    [SerializeField] private Animator _animator;
     [SerializeField] private float _soundDelay;
+
+    private void OnEnable()
+    {
+        _animator.Play("GameOverUI");
+    }
 
     public void GoToMenuButton()
     {
