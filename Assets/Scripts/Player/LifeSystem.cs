@@ -9,6 +9,9 @@ public class LifeSystem : MonoBehaviour
     [SerializeField] private float _maxLife;
     private float _currentLife;
 
+    public bool Trosso = false;
+    public bool isDead = false;
+
     protected virtual void Start()
     {   
         // Events
@@ -38,13 +41,15 @@ public class LifeSystem : MonoBehaviour
 
     protected void CallDeathCoroutine()
     {
+
+        if (isDead) return;
+        isDead = true;
         StartCoroutine(DeathRoutine());
     }
 
     private IEnumerator DeathRoutine()
     {
         //play animations and sound
-
         yield return new WaitForSeconds(_deathDelay);
         EventManager.OnDeathTrigger(gameObject);
         Destroy(gameObject);

@@ -95,18 +95,106 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Room Assets@10x_0
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 3980
+        width: 7327
+        height: 6670
+      alignment: 9
+      pivot: {x: 0.44718, y: 0.33947042}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7142dde63f6cafc4f9ea503b26ff65c3
+      internalID: 457566809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Room Assets@10x_1
+      rect:
+        serializedVersion: 2
+        x: 9417
+        y: 4190
+        width: 5735
+        height: 6731
+      alignment: 9
+      pivot: {x: 0.52024436, y: 0.27959502}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5d64fba6151e0c4681ee503a127e80e
+      internalID: -1814407280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Room Assets@10x_2
+      rect:
+        serializedVersion: 2
+        x: 1984
+        y: 831
+        width: 3185
+        height: 864
+      alignment: 9
+      pivot: {x: 0.5283527, y: 0.26110303}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 210c86ef8dc4ada4388d308a10c4b6aa
+      internalID: -1356766732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Room Assets@10x_3
+      rect:
+        serializedVersion: 2
+        x: 11344
+        y: 565
+        width: 1244
+        height: 2049
+      alignment: 9
+      pivot: {x: 0.5103693, y: 0.2922336}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ab9fcd1725d1db45bbe0c1dd956a9cb
+      internalID: 1291834210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d52d53a2481fdf6489c8b2d25aaf7bd8
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Room Assets@10x_0: 457566809
+      Room Assets@10x_1: -1814407280
+      Room Assets@10x_2: -1356766732
+      Room Assets@10x_3: 1291834210
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

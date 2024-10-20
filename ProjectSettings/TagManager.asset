@@ -8,6 +8,8 @@ TagManager:
   - Obstacle
   - Ground
   - Enemy
+  - Avoid
+  - Music
   layers:
   - Default
   - TransparentFX
@@ -44,4 +46,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: front tree
+    uniqueID: 3988475131
+    locked: 0
+  - name: back tree
+    uniqueID: 1093748709
     locked: 0
