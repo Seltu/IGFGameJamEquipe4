@@ -215,6 +215,10 @@ PrefabInstance:
       propertyPath: _animator
       value: 
       objectReference: {fileID: 835995903}
+    - target: {fileID: 2045551090352335453, guid: 0c7d40847af63034087be5666cba49cf, type: 3}
+      propertyPath: clickSound
+      value: 
+      objectReference: {fileID: 1601073758}
     - target: {fileID: 3843189792484287220, guid: 0c7d40847af63034087be5666cba49cf, type: 3}
       propertyPath: m_UpdateMode
       value: 2

@@ -1122,7 +1122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 0}
   _soundDelay: 0
-  clickSound: {fileID: 0}
+  clickSound: {fileID: 3965667544138434994}
 --- !u!95 &3843189792484287220
 Animator:
   serializedVersion: 5
