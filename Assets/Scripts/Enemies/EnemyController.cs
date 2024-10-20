@@ -43,38 +43,41 @@ public class EnemyController : MonoBehaviour
     }
 
     private void FollowPlayer()
-{
-    _direction = _playerObject.position - transform.position;
-    _direction.y = 0;
-    float distanceToPlayer = _direction.magnitude;
-
-    // Get the separation force
-    Vector3 separationForce = GetSeparationForce();
-
-    // If the enemy is far from the player, follow the player while applying separation
-    if (distanceToPlayer > _stopDistance && !_hasReachedPlayer)
     {
-        _direction.Normalize();
+        _direction = _playerObject.position - transform.position;
+        _direction.y = 0;
+        float distanceToPlayer = _direction.magnitude;
 
-        // Add separation force to the movement
-        Vector3 finalDirection = (_direction + separationForce).normalized;
+        // Get the separation force
+        Vector3 separationForce = GetSeparationForce();
 
-        transform.position += finalDirection * _speed * Time.deltaTime;
-        Vector3 flatForward = new Vector3(finalDirection.x, 0, finalDirection.z).normalized;
-        _visual.forward = Vector3.Lerp(_visual.forward, flatForward, Time.deltaTime);
-        flatForward = new Vector3(_direction.x, 0, _direction.z);
-        _cannonVisual.forward = flatForward;
+        // If the enemy is far from the player, follow the player while applying separation
+        if (distanceToPlayer > _stopDistance && !_hasReachedPlayer)
+        {
+            _direction.Normalize();
+
+            // Add separation force to the movement
+            Vector3 finalDirection = (_direction + separationForce).normalized;
+
+            transform.position += finalDirection * _speed * Time.deltaTime;
+            Vector3 flatForward = new Vector3(finalDirection.x, 0, finalDirection.z).normalized;
+            _visual.forward = Vector3.Lerp(_visual.forward, flatForward, Time.deltaTime);
         }
-    else if(distanceToPlayer < _stopDistance && !_hasReachedPlayer)
-    {
-        _hasReachedPlayer = true;
+
+        Vector3 cannonDirection = new Vector3(_direction.x, 0, _direction.z);
+        _cannonVisual.forward = cannonDirection;
+
+        if (distanceToPlayer < _stopDistance && !_hasReachedPlayer)
+        {
+            _hasReachedPlayer = true;
+        }
+        else if (distanceToPlayer > _stopDistance && _hasReachedPlayer)
+        {
+            _stopDistance = RandomizeStopDistance();
+            _hasReachedPlayer = false;
+        }
     }
-    else if(distanceToPlayer > _stopDistance && _hasReachedPlayer)
-    {
-        _stopDistance = RandomizeStopDistance();
-        _hasReachedPlayer = false;
-    }
-}
+
 
 
     private void ShootPlayer()
