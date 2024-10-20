@@ -152,7 +152,7 @@ public class AnimalController : MonoBehaviour
         if (_target != null)
         {
             var distance = Vector3.Distance(transform.position, _target.position);
-            _attacking = _target.CompareTag("Enemy") && distance < 2f;
+            _attacking = (_target.CompareTag("Door") || _target.CompareTag("Enemy")) && distance < 2f;
             return Seek(_target.position) * Vector3.Distance(transform.position, _target.position);
         }
         return Vector3.zero;

@@ -68,7 +68,7 @@ public class FlockController : MonoBehaviour
         foreach (var animal in _animals)
         {
             if(animal.GetTarget().Equals(dead.transform))
-            {
+            {  
                 animal.SetTarget(transform);
                 animal.SetCollider(false);
                 _selectedEnemies.Remove(dead.transform);
@@ -78,7 +78,9 @@ public class FlockController : MonoBehaviour
                     _selectingEnemies = false;
             }
         }
-        CreateAnimal(dead.transform);
+
+        if(dead.CompareTag("Enemy"))
+            CreateAnimal(dead.transform);
     }
 
     private void CheckAnimalNeighbors()
@@ -159,7 +161,7 @@ public class FlockController : MonoBehaviour
                 var aroundHit = Physics.OverlapSphere(hit.point, 3f);
                 foreach (var enemy in aroundHit)
                 {
-                    if (enemy.CompareTag("Enemy"))
+                    if (enemy.CompareTag("Enemy") || enemy.CompareTag("Door"))
                     {
                         if (!_selectedEnemies.Contains(enemy.transform)||_freeAnimals)
                         {

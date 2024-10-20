@@ -19,6 +19,7 @@ public static class EventManager
 
     public delegate void OnUpdateAnimalCount(int count);
     public static event OnUpdateAnimalCount onUpdateAnimalCountEvent;
+    
     public delegate void OnCombatStart();
     public static event OnCombatStart onCombatStartEvent;
 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7753656620097174261}
   m_Layer: 3
   m_Name: Door
-  m_TagString: Enemy
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 313964150187116447}
   m_Layer: 3
   m_Name: Door
-  m_TagString: Enemy
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
