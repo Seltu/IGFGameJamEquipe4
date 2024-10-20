@@ -57,6 +57,8 @@ Material:
     - Vector1_36BC0FD6: 2.55
     - Vector1_52D24AB4: 2.27
     - Vector1_7AA64B76: 3.61
+    - _QueueControl: 0
+    - _QueueOffset: 0
     - _WindSpeed: 0.27
     m_Colors:
     - Vector2_AB971143: {r: 2, g: 0, b: 0, a: 0}

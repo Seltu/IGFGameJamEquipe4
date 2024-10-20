@@ -54,9 +54,10 @@ public class LifeSystem : MonoBehaviour
     private IEnumerator DeathRoutine()
     {
         //play animations and sound
+
+        deathSound.Play();
         yield return new WaitForSeconds(_deathDelay);
         EventManager.OnDeathTrigger(gameObject);
-        deathSound.Play();
         Destroy(gameObject);
     }
 }

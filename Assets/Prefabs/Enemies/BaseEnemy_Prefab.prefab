@@ -106,7 +106,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f43b1195212998c4c9ddfdc94080c0fd, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a6bd787976d30244835011c29b09a70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deathDelay: 0.1
+  _deathDelay: 0.5
   _maxLife: 10
   hitSound: {fileID: 6138757906939912159}
   deathSound: {fileID: 7021683411850272963}
@@ -389,7 +389,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 12316df5a619b2d4e9359deb450b2910, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.15
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -515,9 +515,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c59f64f10f6d9a349926e5551c16e3e1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 36c67e129434c7042bee2557c3c6664f, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.08
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0

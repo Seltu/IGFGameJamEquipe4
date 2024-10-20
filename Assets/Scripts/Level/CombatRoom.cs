@@ -8,6 +8,7 @@ public class CombatRoom : MonoBehaviour
     [SerializeField] private Collider _combatCollider;
     private List<EnemyController> _spawnedEnemies = new();
     private bool _defeated = false;
+    private bool _spawning = false;
     private void Start()
     {
         EventManager.onDeathEvent += CheckEnemyDeath;
@@ -24,7 +25,7 @@ public class CombatRoom : MonoBehaviour
         if (_spawnedEnemies.Exists(enemy => enemy.gameObject.Equals(deadObject)))
         {
             _spawnedEnemies.Remove(_spawnedEnemies.Find(enemy => enemy.gameObject.Equals(deadObject)));
-            if (_spawnedEnemies.Count <= 0)
+            if (_spawnedEnemies.Count <= 0 && !_spawning)
             {
                 EventManager.OnCombatEndTrigger();
                 _defeated = true;
@@ -34,17 +35,31 @@ public class CombatRoom : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(!other.CompareTag("Player")) return;
+        if (!other.CompareTag("Player")) return;
         EventManager.OnCombatStartTrigger();
         _combatCollider.enabled = false;
+        StartCoroutine(SpawnEnemies());
+    }
+
+    private IEnumerator SpawnEnemies()
+    {
+        _spawning = true;
         foreach (EnemySpawn wave in _levelInfoSO.combatEncounters[Random.Range(0, _levelInfoSO.combatEncounters.Count)].waves)
         {
             for (int i = 0; i < wave.number; i++)
             {
-                _spawnedEnemies.Add(Instantiate(_levelInfoSO.enemyPrefabs[(int)wave.type],
-                    new Vector3(transform.position.x + Random.Range(0f, _combatCollider.bounds.extents.x), 0f,
-                    transform.position.z + Random.Range(0f, _combatCollider.bounds.extents.z)), Quaternion.identity));
+                Vector3 randomizedPosition = new Vector3(transform.position.x + Random.Range(0f, _combatCollider.bounds.extents.x), 0f,
+                    transform.position.z + Random.Range(0f, _combatCollider.bounds.extents.z));
+                Debug.Log(randomizedPosition);
+                var enemy = Instantiate(_levelInfoSO.enemyPrefabs[(int)wave.type], randomizedPosition, Quaternion.identity);
+                enemy.enabled = false;
+                enemy.tag = "Untagged";
+                _spawnedEnemies.Add(enemy);
+                yield return new WaitForSeconds(1f);
+                enemy.enabled = true;
+                enemy.tag = "Enemy";
             }
         }
+        _spawning = false;
     }
 }

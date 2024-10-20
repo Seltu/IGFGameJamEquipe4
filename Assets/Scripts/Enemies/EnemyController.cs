@@ -12,10 +12,10 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Transform _cannonVisual;
 
     [Header("Variables")]
-    [SerializeField] private float _fireRate;
-    [SerializeField] private float _bulletAmount = 1;
-    [SerializeField] private float _bulletAngle = 0f;
-    [SerializeField] private float _bulletSpeed = 8f;
+    [SerializeField] protected float _fireRate;
+    [SerializeField] protected float _bulletAmount = 1;
+    [SerializeField] protected float _bulletAngle = 0f;
+    [SerializeField] protected float _bulletSpeed = 8f;
     [SerializeField] private float _minStopDistance;
     [SerializeField] private float _maxStopDistance;
     [SerializeField] private float _speed;
@@ -23,13 +23,13 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _separationForce = 2.0f;
     [SerializeField] private AudioSource shotSound;
     private float _stopDistance;
-    private float _cooldown;
+    protected float _cooldown;
     private Transform _playerObject;
     private Vector3 _direction;
     private bool _hasReachedPlayer;
 
 
-    private void Start()
+    protected void Start()
     {
         _playerObject = GameObject.FindGameObjectWithTag("Player").transform;
         _stopDistance = RandomizeStopDistance();
@@ -37,7 +37,7 @@ public class EnemyController : MonoBehaviour
         _cooldown += _fireRate * Random.value;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (_cooldown > 0)
             _cooldown -= Time.deltaTime;
@@ -47,7 +47,7 @@ public class EnemyController : MonoBehaviour
         FollowPlayer();
     }
 
-    private void FollowPlayer()
+    protected void FollowPlayer()
     {
         _direction = _playerObject.position - transform.position;
         _direction.y = 0;
@@ -85,7 +85,7 @@ public class EnemyController : MonoBehaviour
 
 
 
-    private void ShootPlayer()
+    protected void ShootPlayer()
     {
         var angleStep = _bulletAngle / (_bulletAmount - 1); // Increment between each bullet's angle
         var currentAngle = -_bulletAngle / 2; // Start from negative half of the total angle
@@ -116,12 +116,12 @@ public class EnemyController : MonoBehaviour
 
 
 
-    private float RandomizeStopDistance()
+    protected float RandomizeStopDistance()
     {
         return Random.Range(_minStopDistance, _maxStopDistance);
     }
 
-    private Vector3 GetSeparationForce()
+    protected Vector3 GetSeparationForce()
     {
         Vector3 separation = Vector3.zero;
         int nearbyEnemiesCount = 0;
@@ -154,5 +154,5 @@ public class EnemyController : MonoBehaviour
     }
 
     return separation * _separationForce;
-}
+    }
 }
