@@ -54,7 +54,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Vector1_36BC0FD6: 0.53
+    - Vector1_36BC0FD6: 0.33
     - Vector1_52D24AB4: 1
     - Vector1_7AA64B76: 4
     - _WindSpeed: 0.23

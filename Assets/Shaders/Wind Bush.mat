@@ -57,7 +57,7 @@ Material:
     - Vector1_36BC0FD6: 0.53
     - Vector1_52D24AB4: 1
     - Vector1_7AA64B76: 4
-    - _WindSpeed: 0.23
+    - _WindSpeed: 0.41
     m_Colors:
     - Vector2_AB971143: {r: 2, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
