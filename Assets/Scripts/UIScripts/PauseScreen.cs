@@ -9,26 +9,40 @@ public class PauseScreen : MonoBehaviour
     [SerializeField] private GameObject _PausePanel;
     [SerializeField] private float _soundDelay;
     private bool _gameIsPaused;
+    private bool _gameCanBePaused = true;
 
     private void Start()
     {
+        EventManager.onGameOverEvent += GameCannotBePaused;
         _gameIsPaused = false;
+        _gameCanBePaused = true;
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.onGameOverEvent -= GameCannotBePaused;
     }
 
     void Update()
     {
-        if(Input.GetKey(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Escape) && _gameCanBePaused)
         {
             if(!_gameIsPaused)
+            {
                 PauseGame();
-            else
+            }
+            else if(_gameIsPaused)
+            {
+                Debug.Log("help");
                 UnpauseGame();
+            }
         }
     }
 
     public void PauseGame()
     {   
         Time.timeScale = 0;
+        _gameIsPaused = true;
         _PausePanel.SetActive(true);
     }
 
@@ -36,6 +50,7 @@ public class PauseScreen : MonoBehaviour
     {
         _PausePanel.SetActive(false);
         Time.timeScale = 1;
+        _gameIsPaused = false;
     }
 
     public void GoToMenuButton()
@@ -51,14 +66,19 @@ public class PauseScreen : MonoBehaviour
 
     private IEnumerator MenuSoundDelay()
     {
-        yield return new WaitForSeconds(_soundDelay);
+        yield return new WaitForSecondsRealtime(_soundDelay);
         Time.timeScale = 1;
         SceneManager.LoadScene("MenuScene");
     }
 
     private IEnumerator ExitSoundDelay()
     {
-        yield return new WaitForSeconds(_soundDelay);
+        yield return new WaitForSecondsRealtime(_soundDelay);
         Application.Quit();
+    }
+
+    private void GameCannotBePaused()
+    {
+        _gameCanBePaused = false;
     }
 }
