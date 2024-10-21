@@ -1,8 +1,11 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimalController : MonoBehaviour
 {
+    [SerializeField] private GameObject _hitExplosionVFX;
+    [SerializeField] private float _hitVFXDelay;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private ThrowObject _throwObject;
     [SerializeField] private float _maxSpeed = 5f;
@@ -26,6 +29,7 @@ public class AnimalController : MonoBehaviour
     private bool _attacking;
     private float _attackTimer;
     private bool _isDead = false;
+    private bool _canExplode = true;
 
     private void Start()
     {
@@ -48,6 +52,7 @@ public class AnimalController : MonoBehaviour
         else if (_attacking)
         {
             EventManager.OnTakeDamageTrigger(_attackDamage, _target.gameObject);
+            if(_target.tag == "Enemy" && _canExplode) StartCoroutine(HitExplosion());
             _attackTimer = _attackTime;
         }
 
@@ -236,5 +241,14 @@ public class AnimalController : MonoBehaviour
     {
         _velocity = Vector3.zero;
         _isDead = true;
+    }
+
+    private IEnumerator HitExplosion()
+    {
+        _canExplode = false;
+        _hitExplosionVFX.SetActive(true);
+        yield return new WaitForSeconds(_hitVFXDelay);
+        _hitExplosionVFX.SetActive(false);
+        _canExplode = true;
     }
 }
