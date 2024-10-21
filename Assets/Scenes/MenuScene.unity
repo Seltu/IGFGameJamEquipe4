@@ -2177,7 +2177,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -6907,6 +6907,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1692253144740719726, guid: 1cecc3d83786ce148836c9f4d998d779, type: 3}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 1692253144740719726, guid: 1cecc3d83786ce148836c9f4d998d779, type: 3}
       propertyPath: m_audioClip
       value: 

@@ -10,6 +10,24 @@ public class MainMenuSript : MonoBehaviour
     [SerializeField] private string _gameSceneName;
     [SerializeField] private Animator _anim;
     [SerializeField] private AudioSource clickSound;
+    private AsyncOperation asyncOperation;
+
+    void Start()
+    {
+        asyncOperation = SceneManager.LoadSceneAsync(_gameSceneName);
+        asyncOperation.allowSceneActivation = false;
+    }
+
+
+    // Call this function when you're ready to switch to the preloaded scene
+    public void ActivateScene()
+    {
+        if (asyncOperation != null)
+        {
+            asyncOperation.allowSceneActivation = true;
+        }
+    }
+
 
 
     #region Play Button
@@ -22,7 +40,7 @@ public class MainMenuSript : MonoBehaviour
     {
         //play sound
         yield return new WaitForSeconds(_buttonSoundDelayTime);
-        SceneManager.LoadScene(_gameSceneName);
+        ActivateScene();
     }
     #endregion
 
