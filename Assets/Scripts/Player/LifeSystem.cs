@@ -55,6 +55,12 @@ public class LifeSystem : MonoBehaviour
         //play animations and sound
 
         deathSound.Play();
+
+        if(TryGetComponent<ExplodeEnemy>(out ExplodeEnemy boom))
+        {
+            boom.Explode();
+        }
+        
         yield return new WaitForSeconds(_deathDelay);
         EventManager.OnDeathTrigger(gameObject);
         Destroy(gameObject);

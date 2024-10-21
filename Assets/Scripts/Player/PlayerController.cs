@@ -8,12 +8,13 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _rb;
     private Vector3 _movement;
     private Animator _animator; // Reference to Animator
+    private bool _isDead = false;
 
     void Start()
     {
         EventManager.onPlayerGotHitEvent += TriggerHitAnimation;
+        EventManager.onGameOverEvent += TriggerPlayerDeath;
 
-        // Get the Rigidbody component (3D, not 2D)
         _rb = GetComponent<Rigidbody>();
 
         // Get the Animator component attached to the player
@@ -23,10 +24,13 @@ public class PlayerController : MonoBehaviour
     private void OnDestroy()
     {
         EventManager.onPlayerGotHitEvent -= TriggerHitAnimation;
+        EventManager.onGameOverEvent -= TriggerPlayerDeath;
     }
 
     void Update()
     {
+        if(_isDead) return;
+
         // Get input from the player (WASD or arrow keys)
         // Use X for left-right (horizontal) and Z for forward-backward (vertical) in 3D
         _movement.x = Input.GetAxisRaw("Horizontal");
@@ -50,11 +54,21 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         // Move the character in the XZ plane (3D movement while ignoring Y for a flat plane)
+        if(_isDead) return;
+
         _rb.velocity = _movement * _moveSpeed;
     }
 
     private void TriggerHitAnimation()
     {
         _animator.SetTrigger("PlayerHit");
+    }
+
+    private void TriggerPlayerDeath()
+    {
+        _isDead = true;
+        _rb.velocity = Vector3.zero;
+        
+        _animator.SetTrigger("Death");
     }
 }

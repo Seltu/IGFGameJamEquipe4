@@ -8,11 +8,17 @@ public static class EventManager
     public delegate void OnGameOver();
     public static event OnGameOver onGameOverEvent;
 
+    public delegate void OnGameWin();
+    public static event OnGameWin onGameWinEvent;
+
     public delegate void OnShakeCamera(float intensity, float frequency, float duration);
     public static event OnShakeCamera OnShakeCameraEvent;
 
     public delegate void OnDeath(GameObject deadObject);
     public static event OnDeath onDeathEvent;
+
+    public delegate void OnCreateNewAnimal(Transform destroyedEnemy);
+    public static event OnCreateNewAnimal onCreateNewAnimalEvent;
 
     public delegate void OnTakeDamage(float damageTaken, GameObject damagedObject);
     public static event OnTakeDamage onTakeDamageEvent;
@@ -38,6 +44,11 @@ public static class EventManager
         onGameOverEvent?.Invoke();
     }
 
+    public static void OnGameWinTrigger()
+    {
+        onGameWinEvent?.Invoke();
+    }
+
     public static void OnShakeCameraTrigger(float intensity, float frequency, float duration)
     {
         OnShakeCameraEvent?.Invoke(intensity, frequency, duration);
@@ -46,6 +57,11 @@ public static class EventManager
     public static void OnDeathTrigger(GameObject deadObject)
     {
         onDeathEvent?.Invoke(deadObject);
+    }
+
+    public static void OnCreateNewAnimalTrigger(Transform destroyedEnemy)
+    {
+        onCreateNewAnimalEvent?.Invoke(destroyedEnemy);
     }
 
     public static void OnTakeDamageTrigger(int damageTaken, GameObject damagedObject)
