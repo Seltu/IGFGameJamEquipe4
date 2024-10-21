@@ -11,11 +11,18 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        EventManager.onPlayerGotHitEvent += TriggerHitAnimation;
+
         // Get the Rigidbody component (3D, not 2D)
         _rb = GetComponent<Rigidbody>();
 
         // Get the Animator component attached to the player
         _animator = GetComponent<Animator>();
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.onPlayerGotHitEvent -= TriggerHitAnimation;
     }
 
     void Update()
@@ -32,11 +39,11 @@ public class PlayerController : MonoBehaviour
         // Update the animator with the movement state
         if (isMoving)
         {
-            _animator.Play("Move"); // Play "Move" animation when moving
+            _animator.SetBool("PlayerWalk", true); // Play "Move" animation when moving
         }
         else
         {
-            _animator.Play("Still"); // Play "Still" animation when standing still
+            _animator.SetBool("PlayerWalk", false); // Play "Still" animation when standing still
         }
     }
 
@@ -44,5 +51,10 @@ public class PlayerController : MonoBehaviour
     {
         // Move the character in the XZ plane (3D movement while ignoring Y for a flat plane)
         _rb.velocity = _movement * _moveSpeed;
+    }
+
+    private void TriggerHitAnimation()
+    {
+        _animator.SetTrigger("PlayerHit");
     }
 }
