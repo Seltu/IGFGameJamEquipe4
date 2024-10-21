@@ -17,8 +17,7 @@ public class FlockController : MonoBehaviour
     [SerializeField] private AudioSource animalAttack;
     [SerializeField] private AudioSource HitSound;
     [SerializeField] private AudioSource CreateAnimalSound;
-    [SerializeField] private Texture2D NormalCursor;
-    [SerializeField] private Texture2D AnimalCursor;
+    [SerializeField] private Texture2D specialCursor;
     private List<Transform> _selectedEnemies = new();
     private List<AnimalController> _animals = new();
     private float _assignTimer = 0.2f;
@@ -30,6 +29,7 @@ public class FlockController : MonoBehaviour
 
     private void Start()
     {
+        Cursor.SetCursor(specialCursor, Vector2.zero, CursorMode.Auto);
         EventManager.onDeathEvent += CheckTargetDeath;
         EventManager.onCreateNewAnimalEvent += CreateAnimal;
         EventManager.onPlayerGotHitEvent += OnPlayerHitDiscard;

@@ -52,6 +52,11 @@ MonoBehaviour:
   _standByTime: 1
   _animalNeighborRadius: 3
   _mouseTarget: {fileID: 8353606632260871152}
+  enemySelect: {fileID: 0}
+  animalAttack: {fileID: 0}
+  HitSound: {fileID: 0}
+  CreateAnimalSound: {fileID: 0}
+  specialCursor: {fileID: 2800000, guid: 48de9b1ccd7514344a28b3442a610278, type: 3}
 --- !u!1 &7888734259848114136
 GameObject:
   m_ObjectHideFlags: 0
