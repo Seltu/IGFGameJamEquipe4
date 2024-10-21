@@ -17,6 +17,8 @@ public class FlockController : MonoBehaviour
     [SerializeField] private AudioSource animalAttack;
     [SerializeField] private AudioSource HitSound;
     [SerializeField] private AudioSource CreateAnimalSound;
+    [SerializeField] private Texture2D NormalCursor;
+    [SerializeField] private Texture2D AnimalCursor;
     private List<Transform> _selectedEnemies = new();
     private List<AnimalController> _animals = new();
     private float _assignTimer = 0.2f;
@@ -127,13 +129,13 @@ public class FlockController : MonoBehaviour
             _selectingEnemies = false;
             _selectedEnemies.Clear();
         }
-        if(Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {
             if (_assignTimer <= 0)
             {
                 if (_selectingEnemies)
                 {
-                    if (_distributionIndex < _animals.Count&&_selectedEnemies.Count>0)
+                    if (_distributionIndex < _animals.Count && _selectedEnemies.Count > 0)
                     {
                         var currentEnemy = _selectedEnemies[_distributionIndex % _selectedEnemies.Count];
                         if (_animals[_distributionIndex].GetTarget() != currentEnemy)
@@ -159,7 +161,7 @@ public class FlockController : MonoBehaviour
                         _assignTimer = _assignTime;
                     }
                 }
-             }
+            }
 
             if (Time.timeScale <= 0) return;
                 

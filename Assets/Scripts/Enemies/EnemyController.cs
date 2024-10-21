@@ -6,10 +6,10 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private GameObject _bulletPrefab;
-    [SerializeField] private Transform _shootPoint;
-    [SerializeField] private Transform _visual;
-    [SerializeField] private Transform _cannonVisual;
+    [SerializeField] protected BulletBehaviour _bulletPrefab;
+    [SerializeField] protected Transform _shootPoint;
+    [SerializeField] protected Transform _visual;
+    [SerializeField] protected Transform _cannonVisual;
 
     [Header("Variables")]
     [SerializeField] protected float _fireRate;
@@ -21,11 +21,13 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _separationRadius = 2.0f;
     [SerializeField] private float _separationForce = 2.0f;
-    [SerializeField] private AudioSource shotSound;
+    [SerializeField] protected AudioSource shotSound;
+    [SerializeField] protected float _bulletTilt = 0f;
+    protected float _tilt = 0f;
     private float _stopDistance;
     protected float _cooldown;
-    private Transform _playerObject;
-    private Vector3 _direction;
+    protected Transform _playerObject;
+    protected Vector3 _direction = Vector3.forward;
     private bool _hasReachedPlayer;
 
 
@@ -89,12 +91,11 @@ public class EnemyController : MonoBehaviour
     protected void ShootPlayer()
     {
         var angleStep = _bulletAngle / (_bulletAmount - 1); // Increment between each bullet's angle
-        var currentAngle = -_bulletAngle / 2; // Start from negative half of the total angle
+        var currentAngle = -_bulletAngle / 2 + _tilt; // Start from negative half of the total angle
 
         for (var i = 0; i < _bulletAmount; i++)
         {
-            GameObject bullet = Instantiate(_bulletPrefab, _shootPoint.position, Quaternion.identity);
-            BulletBehaviour bulletScript = bullet.GetComponent<BulletBehaviour>();
+            BulletBehaviour bullet = Instantiate(_bulletPrefab, _shootPoint.position, Quaternion.identity);
             shotSound.Play();
 
             // Get the normalized direction towards the player
@@ -107,12 +108,13 @@ public class EnemyController : MonoBehaviour
             Vector3 rotatedDirection = rotation * direction;
 
             // Set bullet velocity in the rotated direction
-            bulletScript.GetBulletRigidBody().velocity = rotatedDirection * _bulletSpeed;
+            bullet.GetBulletRigidBody().velocity = rotatedDirection * _bulletSpeed;
             // Increment the angle for the next bullet
             currentAngle += angleStep;
-
-            _cooldown = _fireRate;
         }
+
+        _cooldown = _fireRate;
+        _tilt += _bulletTilt;
     }
 
 

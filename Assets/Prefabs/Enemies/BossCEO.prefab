@@ -109,7 +109,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 520d0439f8ebe62459e36fdea9787b17, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.6666666
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 520d0439f8ebe62459e36fdea9787b17, type: 3}
       propertyPath: m_LocalPosition.z
@@ -293,31 +293,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2034803258641929434, guid: d6341a4d730011745ae3b1a318805d48, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2816829170594475478, guid: d6341a4d730011745ae3b1a318805d48, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.6
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 2816829170594475478, guid: d6341a4d730011745ae3b1a318805d48, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.6
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 2816829170594475478, guid: d6341a4d730011745ae3b1a318805d48, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.6
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 2816829170594475478, guid: d6341a4d730011745ae3b1a318805d48, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3310823586409217116, guid: d6341a4d730011745ae3b1a318805d48, type: 3}
       propertyPath: m_Name
       value: BossCEO
       objectReference: {fileID: 0}
+    - target: {fileID: 6138757906939912159, guid: d6341a4d730011745ae3b1a318805d48, type: 3}
+      propertyPath: Priority
+      value: 178
+      objectReference: {fileID: 0}
+    - target: {fileID: 6138757906939912159, guid: d6341a4d730011745ae3b1a318805d48, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: fc57201b6129f064f975f9a5e561016a, type: 3}
     - target: {fileID: 7818730097467232706, guid: d6341a4d730011745ae3b1a318805d48, type: 3}
       propertyPath: _maxLife
-      value: 500
+      value: 750
       objectReference: {fileID: 0}
     - target: {fileID: 8399388181499209572, guid: d6341a4d730011745ae3b1a318805d48, type: 3}
       propertyPath: m_Size.x
@@ -341,6 +349,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
+    - {fileID: 913673855983119883, guid: d6341a4d730011745ae3b1a318805d48, type: 3}
     m_RemovedGameObjects:
     - {fileID: 790353926526649416, guid: d6341a4d730011745ae3b1a318805d48, type: 3}
     m_AddedGameObjects:
@@ -374,11 +383,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 032fbac1bc8632643a10e9f02c301e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 3636811652536261883, guid: 10e8f537e06466c4da446beb2ee79786, type: 3}
+  _bulletPrefab: {fileID: 8655348623919080736, guid: ad8865cf386c21044a3ee0b61a775d02, type: 3}
   _shootPoint: {fileID: 7808530223723717470}
   _visual: {fileID: 6302516242139912786}
   _cannonVisual: {fileID: 0}
-  _fireRate: 5
+  _fireRate: 1
   _bulletAmount: 1
   _bulletAngle: 0
   _bulletSpeed: 15
@@ -388,6 +397,8 @@ MonoBehaviour:
   _separationRadius: 20
   _separationForce: 2
   shotSound: {fileID: 6751935261668276036}
+  _bulletTilt: 0
+  _minionPrefab: {fileID: 8993248180568299919, guid: 85871b677b39fe84c94df13757b26ed6, type: 3}
 --- !u!82 &6751935261668276036 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 3302224077497237696, guid: d6341a4d730011745ae3b1a318805d48, type: 3}

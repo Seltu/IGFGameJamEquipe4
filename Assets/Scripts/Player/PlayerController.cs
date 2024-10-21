@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private float _moveSpeed = 5f; // Movement speed
     private Rigidbody _rb;
+    [SerializeField] private Collider _col;
     private Vector3 _movement;
     private Animator _animator; // Reference to Animator
     private bool _isDead = false;
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
     {
         EventManager.onPlayerGotHitEvent += TriggerHitAnimation;
         EventManager.onGameOverEvent += TriggerPlayerDeath;
+        EventManager.onGameWinEvent += TriggerPlayerWin;
 
         _rb = GetComponent<Rigidbody>();
 
@@ -25,6 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         EventManager.onPlayerGotHitEvent -= TriggerHitAnimation;
         EventManager.onGameOverEvent -= TriggerPlayerDeath;
+        EventManager.onGameWinEvent -= TriggerPlayerWin;
     }
 
     void Update()
@@ -70,5 +73,12 @@ public class PlayerController : MonoBehaviour
         _rb.velocity = Vector3.zero;
         
         _animator.SetTrigger("Death");
+    }
+
+    private void TriggerPlayerWin()
+    {
+        _isDead = true;
+        _col.enabled = false;
+        _rb.velocity = Vector3.zero;
     }
 }

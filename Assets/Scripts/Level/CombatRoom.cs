@@ -48,8 +48,8 @@ public class CombatRoom : MonoBehaviour
         {
             for (int i = 0; i < wave.number; i++)
             {
-                Vector3 randomizedPosition = new Vector3(transform.position.x + Random.Range(0f, _combatCollider.bounds.extents.x), 0f,
-                    transform.position.z + Random.Range(0f, _combatCollider.bounds.extents.z));
+                Vector3 randomizedPosition = new Vector3(transform.position.x + Random.Range(-10f, 10f), 0f,
+                    transform.position.z + Random.Range(-10f, 10f));
                 Debug.Log(randomizedPosition);
                 var enemy = Instantiate(_levelInfoSO.enemyPrefabs[(int)wave.type], randomizedPosition, Quaternion.identity);
                 enemy.enabled = false;

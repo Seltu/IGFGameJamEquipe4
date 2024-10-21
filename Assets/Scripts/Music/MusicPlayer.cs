@@ -30,14 +30,6 @@ public class MusicManager : MonoBehaviour
         PlayMusic(0);
     }
 
-    private void Update()
-    {
-        // Example input controls for testing
-        if (Input.GetKeyDown(KeyCode.Alpha1)) // Situation 1 (1 on alphabetical keyboard)
-        {
-            PlayMusic(1); // Plays the first track
-        }
-    }
 
     // Call this function to change music based on the game situation
     public void PlayMusic(int trackIndex)
@@ -46,6 +38,11 @@ public class MusicManager : MonoBehaviour
         {
             ChangeMusicTrack(trackIndex);
         }
+    }
+
+    public void StopMusic()
+    {
+        audioSource.Stop();
     }
 
     // Simplified track change without coroutine to reduce memory footprint

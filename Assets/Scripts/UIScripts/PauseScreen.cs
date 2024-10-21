@@ -15,6 +15,7 @@ public class PauseScreen : MonoBehaviour
     private void Start()
     {
         EventManager.onGameOverEvent += GameCannotBePaused;
+        EventManager.onBossSpawnEvent += BossCutsceneCannotPause;
         _gameIsPaused = false;
         _gameCanBePaused = true;
     }
@@ -22,6 +23,7 @@ public class PauseScreen : MonoBehaviour
     private void OnDestroy()
     {
         EventManager.onGameOverEvent -= GameCannotBePaused;
+        EventManager.onBossSpawnEvent -= BossCutsceneCannotPause;
     }
 
     void Update()
@@ -83,5 +85,17 @@ public class PauseScreen : MonoBehaviour
     private void GameCannotBePaused()
     {
         _gameCanBePaused = false;
+    }
+
+    private void BossCutsceneCannotPause()
+    {
+        StartCoroutine(GameCannotPauseForTime(1f));
+    }
+
+    private IEnumerator GameCannotPauseForTime(float time)
+    {
+        _gameCanBePaused = false;
+        yield return new WaitForSeconds(time);
+        _gameCanBePaused = true;
     }
 }

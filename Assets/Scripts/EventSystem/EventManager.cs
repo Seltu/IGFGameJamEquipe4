@@ -11,6 +11,9 @@ public static class EventManager
     public delegate void OnGameWin();
     public static event OnGameWin onGameWinEvent;
 
+    public delegate void OnBossSpawn();
+    public static event OnBossSpawn onBossSpawnEvent;
+
     public delegate void OnShakeCamera(float intensity, float frequency, float duration);
     public static event OnShakeCamera OnShakeCameraEvent;
 
@@ -47,6 +50,11 @@ public static class EventManager
     public static void OnGameWinTrigger()
     {
         onGameWinEvent?.Invoke();
+    }
+
+    public static void OnBossSpawnTrigger()
+    {
+        onBossSpawnEvent?.Invoke();
     }
 
     public static void OnShakeCameraTrigger(float intensity, float frequency, float duration)

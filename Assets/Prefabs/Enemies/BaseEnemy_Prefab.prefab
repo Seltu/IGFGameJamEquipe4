@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e003206b7ebf3474080874e3fd7e1d53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 3636811652536261883, guid: 10e8f537e06466c4da446beb2ee79786, type: 3}
+  _bulletPrefab: {fileID: 8655348623919080736, guid: 10e8f537e06466c4da446beb2ee79786, type: 3}
   _shootPoint: {fileID: 2034803258641929434}
   _visual: {fileID: 0}
   _cannonVisual: {fileID: 0}
@@ -531,7 +531,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 36c67e129434c7042bee2557c3c6664f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: fc57201b6129f064f975f9a5e561016a, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.3
   m_Pitch: 1
