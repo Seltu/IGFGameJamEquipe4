@@ -11,14 +11,14 @@ public class GameplayUI : MonoBehaviour
     private void Awake()
     {
         EventManager.onUpdateAnimalCountEvent += UpdateText;
-        EventManager.onDeathEvent += PlayPositiveFeedback;
+        EventManager.onCreateNewAnimalEvent += PlayPositiveFeedback;
         EventManager.onPlayerGotHitEvent += PlayNegativeFeedback;
     }
 
     private void OnDestroy()
     {
         EventManager.onUpdateAnimalCountEvent -= UpdateText;
-        EventManager.onDeathEvent -= PlayPositiveFeedback;
+        EventManager.onCreateNewAnimalEvent -= PlayPositiveFeedback;
         EventManager.onPlayerGotHitEvent -= PlayNegativeFeedback;
     }
 
@@ -32,7 +32,7 @@ public class GameplayUI : MonoBehaviour
         _anim.SetTrigger("PlayerHit");
     }
 
-    private void PlayPositiveFeedback(GameObject dead)
+    private void PlayPositiveFeedback(Transform dead)
     {
         if(dead.CompareTag("Enemy"))
         {

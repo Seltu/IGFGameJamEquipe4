@@ -29,6 +29,7 @@ public class FlockController : MonoBehaviour
     private void Start()
     {
         EventManager.onDeathEvent += CheckTargetDeath;
+        EventManager.onCreateNewAnimalEvent += CreateAnimal;
         EventManager.onPlayerGotHitEvent += OnPlayerHitDiscard;
         EventManager.onCombatStartEvent += Reunite;
 
@@ -54,6 +55,7 @@ public class FlockController : MonoBehaviour
     private void OnDestroy()
     {
         EventManager.onDeathEvent -= CheckTargetDeath;
+        EventManager.onCreateNewAnimalEvent -= CreateAnimal;
         EventManager.onPlayerGotHitEvent -= OnPlayerHitDiscard;
         EventManager.onCombatStartEvent -= Reunite;
     }
@@ -85,8 +87,8 @@ public class FlockController : MonoBehaviour
             }
         }
 
-        if(dead.CompareTag("Enemy"))
-            CreateAnimal(dead.transform);
+        //if(dead.CompareTag("Enemy"))
+            //CreateAnimal(dead.transform);
     }
 
     private void CheckAnimalNeighbors()
