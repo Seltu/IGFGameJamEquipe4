@@ -59,6 +59,10 @@ public class LifeSystem : MonoBehaviour
         if(TryGetComponent<ExplodeEnemy>(out ExplodeEnemy boom))
         {
             boom.Explode();
+            if(TryGetComponent<EnemyController>(out EnemyController brain))
+            {
+                brain.enabled = false;
+            }
         }
         
         yield return new WaitForSeconds(_deathDelay);

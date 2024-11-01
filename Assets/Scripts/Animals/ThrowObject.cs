@@ -10,9 +10,7 @@ public class ThrowObject : MonoBehaviour
     [SerializeField] private float _randomForce;
 
     public void InpulseThrow()
-    {   
-        Debug.Log("UAAAAA");
-        
+    {           
         _rb.useGravity = true;
 
         Vector3 randomDirection = Random.insideUnitSphere;

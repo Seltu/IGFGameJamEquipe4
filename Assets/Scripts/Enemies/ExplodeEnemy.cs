@@ -9,7 +9,6 @@ public class ExplodeEnemy : MonoBehaviour
 
     public void Explode()
     {
-        Debug.Log("boom");
         EventManager.OnCreateNewAnimalTrigger(this.gameObject.transform);
         _visual.SetActive(false);
         _explosion.SetActive(true);

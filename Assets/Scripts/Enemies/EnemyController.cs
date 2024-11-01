@@ -147,15 +147,15 @@ public class EnemyController : MonoBehaviour
                     separation += directionAway.normalized / distance;
                     nearbyEnemiesCount++;
                 }
+            }
         }
-    }
 
-    // Average out the separation force if there are nearby enemies
-    if (nearbyEnemiesCount > 0)
-    {
-        separation /= nearbyEnemiesCount;
-    }
+        // Average out the separation force if there are nearby enemies
+        if (nearbyEnemiesCount > 0)
+        {
+            separation /= nearbyEnemiesCount;
+        }
 
-    return separation * _separationForce;
+        return separation * _separationForce;
     }
 }

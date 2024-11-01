@@ -22,14 +22,14 @@ public class GameWinScreen : MonoBehaviour
 
     private IEnumerator MenuSoundDelay()
     {
-        yield return new WaitForSeconds(_soundDelay);
+        yield return new WaitForSecondsRealtime(_soundDelay);
         Time.timeScale = 1;
         SceneManager.LoadScene("MenuScene");
     }
 
     private IEnumerator ExitSoundDelay()
     {
-        yield return new WaitForSeconds(_soundDelay);
+        yield return new WaitForSecondsRealtime(_soundDelay);
         Application.Quit();
     }
 }

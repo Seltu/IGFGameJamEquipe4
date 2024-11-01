@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
 
     private void TriggerHitAnimation()
     {
+        _col.enabled = false;
         _animator.SetTrigger("PlayerHit");
     }
 
@@ -71,6 +72,7 @@ public class PlayerController : MonoBehaviour
     {
         _isDead = true;
         _rb.velocity = Vector3.zero;
+        _col.enabled = false;
         
         _animator.SetTrigger("Death");
     }
@@ -78,7 +80,7 @@ public class PlayerController : MonoBehaviour
     private void TriggerPlayerWin()
     {
         _isDead = true;
-        _col.enabled = false;
         _rb.velocity = Vector3.zero;
+        _animator.SetTrigger("GameWin");
     }
 }
