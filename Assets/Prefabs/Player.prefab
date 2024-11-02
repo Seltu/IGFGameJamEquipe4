@@ -329,10 +329,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: efbf85e9af4a2ec42868c8d331b0d2a7, type: 3}
+  m_audioClip: {fileID: 8300000, guid: cce4b31e66f95184b97a4c0ca35012f9, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
-  m_Pitch: 1
+  m_Volume: 0.1
+  m_Pitch: 2
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -5780,18 +5780,6 @@ PrefabInstance:
       propertyPath: CreateAnimalSound
       value: 
       objectReference: {fileID: 7569369387224343649}
-    - target: {fileID: 2787418204654860750, guid: 51ef47fe45746d24587ec905decb3c4e, type: 3}
-      propertyPath: _animalPrefabs.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2787418204654860750, guid: 51ef47fe45746d24587ec905decb3c4e, type: 3}
-      propertyPath: _animalPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 6238163632049916755, guid: 5cb70d71939a93542a4c91fdb3112ad1, type: 3}
-    - target: {fileID: 2787418204654860750, guid: 51ef47fe45746d24587ec905decb3c4e, type: 3}
-      propertyPath: _animalPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 6238163632049916755, guid: ef4caf33b6208d54394491ad726731e3, type: 3}
     - target: {fileID: 6973671350522692739, guid: 51ef47fe45746d24587ec905decb3c4e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5802,7 +5790,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6973671350522692739, guid: 51ef47fe45746d24587ec905decb3c4e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 6973671350522692739, guid: 51ef47fe45746d24587ec905decb3c4e, type: 3}
       propertyPath: m_LocalRotation.w

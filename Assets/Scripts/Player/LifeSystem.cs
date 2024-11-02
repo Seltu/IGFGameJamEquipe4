@@ -21,7 +21,6 @@ public class LifeSystem : MonoBehaviour
 
         //Logic
         _currentLife = _maxLife;
-        _deathDelay = deathSound.clip.length;
     }
 
     private void OnDestroy()
@@ -60,9 +59,9 @@ public class LifeSystem : MonoBehaviour
         {
             boom.Explode();
         }
-        
-        yield return new WaitForSeconds(_deathDelay);
+        tag = "Untagged";
         EventManager.OnDeathTrigger(gameObject);
+        yield return new WaitForSeconds(_deathDelay);
         Destroy(gameObject);
     }
 }

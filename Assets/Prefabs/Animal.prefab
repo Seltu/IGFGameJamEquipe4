@@ -35,10 +35,10 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 189539129746198450}
-  - {fileID: 1312749624951342876}
   - {fileID: 2246819355601194372}
   - {fileID: 3966483800185873067}
   - {fileID: 1061756078350507079}
+  - {fileID: 2369995401556702481}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &237936825447242147
@@ -109,7 +109,7 @@ MonoBehaviour:
   _throwObject: {fileID: -3114723597316966262}
   _maxSpeed: 5
   _maxForce: 0.1
-  _separationDistance: 1.5
+  _separationDistance: 2
   _separateForce: 2.5
   _obstacleAvoidanceDistance: 5
   _obstacleMask:
@@ -241,6 +241,38 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &5337247354687569728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2369995401556702481}
+  m_Layer: 6
+  m_Name: Visual
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2369995401556702481
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5337247354687569728}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.7071068, z: 0.7071068, w: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0.13}
+  m_LocalScale: {x: 0.060000002, y: 0.06, z: 0.06}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1312749624951342876}
+  m_Father: {fileID: 2627407655583539501}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6852877750186013184
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,12 +298,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6852877750186013184}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: 2.5, z: 0.13}
-  m_LocalScale: {x: 0.06, y: 0.06, z: 0.06}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 2627407655583539501}
+  m_Father: {fileID: 2369995401556702481}
   m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
 --- !u!212 &3447295565026436357
 SpriteRenderer:

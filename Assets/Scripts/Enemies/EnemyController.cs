@@ -37,6 +37,17 @@ public class EnemyController : MonoBehaviour
         _stopDistance = RandomizeStopDistance();
         _hasReachedPlayer = false;
         _cooldown += _fireRate * Random.value;
+        EventManager.onDeathEvent += CheckEnemyDeath;
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.onDeathEvent -= CheckEnemyDeath;
+    }
+    private void CheckEnemyDeath(GameObject deadObject)
+    {
+        if(gameObject.Equals(deadObject))
+            enabled = false;
     }
 
     protected virtual void Update()

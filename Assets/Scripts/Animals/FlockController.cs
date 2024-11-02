@@ -24,7 +24,6 @@ public class FlockController : MonoBehaviour
     private float _standByTimer = 0;
     private bool _selectingEnemies;
     private int _distributionIndex;
-    private bool _freeAnimals;
     private int _totalAnimalsDiscarted;
 
     private void Start()
@@ -82,10 +81,9 @@ public class FlockController : MonoBehaviour
                 animal.SetTarget(transform);
                 animal.SetCollider(false);
                 _selectedEnemies.Remove(dead.transform);
-                if (_selectedEnemies.Count > 0)
-                    _freeAnimals = true;
-                else
+                if (_selectedEnemies.Count <= 0)
                     _selectingEnemies = false;
+                _distributionIndex = 0;
             }
         }
 
@@ -177,14 +175,13 @@ public class FlockController : MonoBehaviour
                 {
                     if (enemy.CompareTag("Enemy") || enemy.CompareTag("Door"))
                     {
-                        if (!_selectedEnemies.Contains(enemy.transform)||_freeAnimals)
+                        if (!_selectedEnemies.Contains(enemy.transform))
                         {
                             enemySelect.Play();
                             _selectedEnemies.Add(enemy.transform);
                             _selectingEnemies = true;
                             _distributionIndex = 0;
                             _assignTimer = 0;
-                            _freeAnimals = false;
                         }
                     }
                 }

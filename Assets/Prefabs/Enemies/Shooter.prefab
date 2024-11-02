@@ -6282,7 +6282,7 @@ PrefabInstance:
       objectReference: {fileID: 8856494024472485880}
     - target: {fileID: 913673855983119883, guid: d6341a4d730011745ae3b1a318805d48, type: 3}
       propertyPath: _bulletSpeed
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 913673855983119883, guid: d6341a4d730011745ae3b1a318805d48, type: 3}
       propertyPath: _cannonVisual
@@ -6306,7 +6306,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7818730097467232706, guid: d6341a4d730011745ae3b1a318805d48, type: 3}
       propertyPath: _maxLife
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7818730097467232706, guid: d6341a4d730011745ae3b1a318805d48, type: 3}
       propertyPath: hitSound

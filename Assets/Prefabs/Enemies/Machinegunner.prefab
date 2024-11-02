@@ -5763,7 +5763,7 @@ PrefabInstance:
       objectReference: {fileID: 6302516242139912786}
     - target: {fileID: 913673855983119883, guid: d6341a4d730011745ae3b1a318805d48, type: 3}
       propertyPath: _fireRate
-      value: 1
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 913673855983119883, guid: d6341a4d730011745ae3b1a318805d48, type: 3}
       propertyPath: shotSound
@@ -5771,7 +5771,7 @@ PrefabInstance:
       objectReference: {fileID: 6153333804968189066}
     - target: {fileID: 913673855983119883, guid: d6341a4d730011745ae3b1a318805d48, type: 3}
       propertyPath: _bulletSpeed
-      value: 7
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 913673855983119883, guid: d6341a4d730011745ae3b1a318805d48, type: 3}
       propertyPath: _cannonVisual
@@ -5799,7 +5799,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7818730097467232706, guid: d6341a4d730011745ae3b1a318805d48, type: 3}
       propertyPath: _maxLife
-      value: 25
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7818730097467232706, guid: d6341a4d730011745ae3b1a318805d48, type: 3}
       propertyPath: hitSound

@@ -46,7 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animalPrefabs:
-  - {fileID: 6238163632049916755, guid: ef3057ae2448c134e866db30d7ef7d12, type: 3}
+  - {fileID: 3324570860340488348, guid: ee950ddd1a24fd54d9417d1a9076413f, type: 3}
+  - {fileID: 1051417818299695381, guid: 438956973ec69154cb77451ba1cf87a8, type: 3}
+  - {fileID: 545050010771199155, guid: e7e9ec781048b4f47bfc8f9aa366fb58, type: 3}
   _initialAmount: 5
   _assignTime: 0.1
   _standByTime: 1
