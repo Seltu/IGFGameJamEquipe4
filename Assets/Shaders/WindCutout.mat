@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wind Bush 1
-  m_Shader: {fileID: -6465566751694194690, guid: 4c1e4f8a18ad2f8409d7cb43d154ae60, type: 3}
+  m_Name: WindCutout
+  m_Shader: {fileID: -6465566751694194690, guid: 14dbd47feedc9d94c8b67845d5a5915b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -57,9 +57,12 @@ Material:
     - Vector1_36BC0FD6: 0.33
     - Vector1_52D24AB4: 1
     - Vector1_7AA64B76: 4
+    - _Cutout_Size: 0.4
+    - _Falloff_Size: 0.2
     - _QueueControl: 0
     - _QueueOffset: 0
     - _WindSpeed: 0.23
     m_Colors:
     - Vector2_AB971143: {r: 2, g: 0, b: 0, a: 0}
+    - _Cutout_Position: {r: 0.5, g: 0.25, b: 0, a: 0}
   m_BuildTextureStacks: []

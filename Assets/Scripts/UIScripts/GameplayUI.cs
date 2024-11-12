@@ -51,7 +51,7 @@ public class GameplayUI : MonoBehaviour
     {
         if(dead.CompareTag("Enemy"))
         {
-            _overlayAnim.SetTrigger("Positive");
+            //_overlayAnim.SetTrigger("Positive");
         }
     }
 }

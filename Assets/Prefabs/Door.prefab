@@ -193,7 +193,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 0.3, y: 14, z: 10}
+  m_LocalScale: {x: 0.3, y: 5, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7753656620097174261}
@@ -426,10 +426,26 @@ PrefabInstance:
       propertyPath: _breakableDoorLife
       value: 
       objectReference: {fileID: 313964150187116447}
+    - target: {fileID: 4299461757560695866, guid: ffb02f03e91f50947a631a912def2410, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2f18a86312a632742bce57e7169e8b37, type: 2}
+    - target: {fileID: 4794147670379207580, guid: ffb02f03e91f50947a631a912def2410, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2f18a86312a632742bce57e7169e8b37, type: 2}
     - target: {fileID: 5102250079763164492, guid: ffb02f03e91f50947a631a912def2410, type: 3}
       propertyPath: m_Name
       value: Blocker
       objectReference: {fileID: 0}
+    - target: {fileID: 8026747278137116275, guid: ffb02f03e91f50947a631a912def2410, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2f18a86312a632742bce57e7169e8b37, type: 2}
+    - target: {fileID: 8231558716389185335, guid: ffb02f03e91f50947a631a912def2410, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2f18a86312a632742bce57e7169e8b37, type: 2}
     - target: {fileID: 8406385809300704179, guid: ffb02f03e91f50947a631a912def2410, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

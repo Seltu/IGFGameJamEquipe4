@@ -157,6 +157,8 @@ GameObject:
   - component: {fileID: 1401268102043644759}
   - component: {fileID: 7905038495494856966}
   - component: {fileID: 8655348623919080736}
+  - component: {fileID: 7773049804450815087}
+  - component: {fileID: 2002640678212727474}
   m_Layer: 0
   m_Name: Bullet_Prefab
   m_TagString: Untagged
@@ -245,6 +247,40 @@ MonoBehaviour:
   _col: {fileID: 1401268102043644759}
   _rb: {fileID: 7905038495494856966}
   impactSound: {fileID: 6154927602555700144}
+--- !u!114 &7773049804450815087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3636811652536261883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa2dec7a3a4ba5a45bfb00e7472407b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _anim: {fileID: 2002640678212727474}
+--- !u!95 &2002640678212727474
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3636811652536261883}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ece3d090e9b616f4baf358d6803de231, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3791137180479140000
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,7 +353,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 0.58840024, b: 0, a: 1}
   m_FlipX: 0

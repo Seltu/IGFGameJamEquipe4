@@ -24,7 +24,7 @@ public class FlockController : MonoBehaviour
     private float _standByTimer = 0;
     private bool _selectingEnemies;
     private int _distributionIndex;
-    private int _totalAnimalsDiscarted;
+    private int _totalAnimalsDiscarded;
 
     private void Start()
     {
@@ -116,7 +116,7 @@ public class FlockController : MonoBehaviour
             _standByTimer -= Time.deltaTime;
             return;
         }
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonDown(0)||(Input.GetMouseButtonUp(0)&&_selectedEnemies.Count<=0))
         {
             foreach (var animal in _animals)
             {
@@ -127,37 +127,34 @@ public class FlockController : MonoBehaviour
             _selectingEnemies = false;
             _selectedEnemies.Clear();
         }
+        if (_assignTimer <= 0&&_selectingEnemies)
+        {
+            if (_distributionIndex < _animals.Count && _selectedEnemies.Count > 0)
+            {
+                var currentEnemy = _selectedEnemies[_distributionIndex % _selectedEnemies.Count];
+                if (_animals[_distributionIndex].GetTarget() != currentEnemy)
+                {
+                    _animals[_distributionIndex].SetTarget(currentEnemy);
+                    _animals[_distributionIndex].SetCollider(true);
+                    _animals[_distributionIndex].SetSpeed(3f);
+                    _assignTimer = _assignTime;
+                }
+                animalAttack.Play();
+                _distributionIndex++;
+            }
+        }
         if (Input.GetMouseButton(0))
         {
-            if (_assignTimer <= 0)
+            if (_assignTimer <= 0&&!_selectingEnemies)
             {
-                if (_selectingEnemies)
+                var freeAnimals = _animals.Where(obj => obj.GetTarget().Equals(transform));
+                if (freeAnimals.Count() > 0)
                 {
-                    if (_distributionIndex < _animals.Count && _selectedEnemies.Count > 0)
-                    {
-                        var currentEnemy = _selectedEnemies[_distributionIndex % _selectedEnemies.Count];
-                        if (_animals[_distributionIndex].GetTarget() != currentEnemy)
-                        {
-                            _animals[_distributionIndex].SetTarget(currentEnemy);
-                            _animals[_distributionIndex].SetCollider(true);
-                            _animals[_distributionIndex].SetSpeed(3f);
-                            _assignTimer = _assignTime;
-                        }
-                        animalAttack.Play();
-                        _distributionIndex++;
-                    }
-                }
-                else
-                {
-                    var freeAnimals = _animals.Where(obj => obj.GetTarget().Equals(transform));
-                    if (freeAnimals.Count() > 0)
-                    {
-                        var animal = freeAnimals.OrderBy(obj => (obj.transform.position - _mouseTarget.position).sqrMagnitude).FirstOrDefault();
-                        animal.SetTarget(_mouseTarget);
-                        animal.SetCollider(true);
-                        animal.SetSpeed(3f);
-                        _assignTimer = _assignTime;
-                    }
+                    var animal = freeAnimals.OrderBy(obj => (obj.transform.position - _mouseTarget.position).sqrMagnitude).FirstOrDefault();
+                    animal.SetTarget(_mouseTarget);
+                    animal.SetCollider(true);
+                    animal.SetSpeed(3f);
+                    _assignTimer = _assignTime;
                 }
             }
 
@@ -195,18 +192,18 @@ public class FlockController : MonoBehaviour
 
         if(_animals.Count <= 6 && (_animals.Count - 3) > 0)
         {
-            _totalAnimalsDiscarted = 3;
+            _totalAnimalsDiscarded = 3;
         }
         else if(_animals.Count <= 6 && (_animals.Count - 3) <= 0)
         {
-            _totalAnimalsDiscarted = _animals.Count;
+            _totalAnimalsDiscarded = _animals.Count;
         }
         else
         {
-            _totalAnimalsDiscarted = _animals.Count / 2;
+            _totalAnimalsDiscarded = _animals.Count / 2;
         }
 
-        for(int i = 0; i < _totalAnimalsDiscarted; i++)
+        for(int i = 0; i < _totalAnimalsDiscarded; i++)
         {
             StartCoroutine(DiscardAnimals());
         }

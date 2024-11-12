@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1387944413810166803, guid: ef3057ae2448c134e866db30d7ef7d12, type: 3}
       propertyPath: m_Name
-      value: Animal Variant
+      value: Animal 2
       objectReference: {fileID: 0}
     - target: {fileID: 2627407655583539501, guid: ef3057ae2448c134e866db30d7ef7d12, type: 3}
       propertyPath: m_LocalPosition.x
@@ -104,7 +104,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3781014329793708007, guid: 131113843c869cf43bb92b56ea09701c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.484616
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3781014329793708007, guid: 131113843c869cf43bb92b56ea09701c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -112,7 +112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3781014329793708007, guid: 131113843c869cf43bb92b56ea09701c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.71615386
+      value: 0.17
       objectReference: {fileID: 0}
     - target: {fileID: 3781014329793708007, guid: 131113843c869cf43bb92b56ea09701c, type: 3}
       propertyPath: m_LocalRotation.w

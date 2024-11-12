@@ -383,7 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 032fbac1bc8632643a10e9f02c301e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 8655348623919080736, guid: ad8865cf386c21044a3ee0b61a775d02, type: 3}
+  _bulletPrefab: {fileID: 5088434360617568649, guid: bcdb4eda8030b944aafd7f9dba94ca51, type: 3}
   _shootPoint: {fileID: 7808530223723717470}
   _visual: {fileID: 6302516242139912786}
   _cannonVisual: {fileID: 0}

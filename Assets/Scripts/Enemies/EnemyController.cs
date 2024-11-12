@@ -44,7 +44,7 @@ public class EnemyController : MonoBehaviour
     {
         EventManager.onDeathEvent -= CheckEnemyDeath;
     }
-    private void CheckEnemyDeath(GameObject deadObject)
+    protected virtual void CheckEnemyDeath(GameObject deadObject)
     {
         if(gameObject.Equals(deadObject))
             enabled = false;

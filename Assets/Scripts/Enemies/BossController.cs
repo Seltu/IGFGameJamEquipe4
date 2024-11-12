@@ -30,6 +30,15 @@ public class BossController : EnemyController
         }
     }
 
+    protected override void CheckEnemyDeath(GameObject deadObject)
+    {
+        if (gameObject.Equals(deadObject))
+        {
+            enabled = false;
+            EventManager.OnCombatEndTrigger();
+        }
+    }
+
     private void ShootAround()
     {
         var angleStep = _bulletAngle / (_bulletAmount - 1); // Increment between each bullet's angle
